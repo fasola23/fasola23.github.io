@@ -1,0 +1,34 @@
+LAPTOP HP ProBook 455 G3
+Nazwa systemu operacyjnego-Microsoft Windows 10 Home	
+Wersja-10.0.19045 Kompilacja 19045		
+Producent systemu operacyjnego-Microsoft Corporation	
+Nazwa systemu-DESKTOP-9U1S1UU	
+Producent systemu-HP	
+Model systemu-HP ProBook 455 G3	
+Typ systemu-x64-based PC	
+Jednostka magazynowa systemu-P5S12EA#AKD	
+Procesor-AMD A8-7410 APU with AMD Radeon R5 Graphics, 2200 MHz, Rdzenie: 4, Procesory logiczne: 4	
+Wersja/data systemu BIOS-HP N80 Ver. 01.53, 07.04.2022	
+Wersja SMBIOS-2.7	
+Wersja kontrolera osadzonego-146.114	
+Tryb systemu BIOS-UEFI	
+Producent płyty głównej-HP	
+Produkt płyty głównej-80F0	
+Wersja płyty głównej-KBC Version 92.72	
+Rola platformy-Urządzenie przenośne	
+Stan bezpiecznego rozruchu-Wyłączone	
+Konfiguracja PCR7-Wyświetlenie wymaga podniesienia poziomu	
+Katalog systemu Windows-C:\WINDOWS	
+Katalog systemowy-C:\WINDOWS\system32	
+Urządzenie rozruchowe-\Device\HarddiskVolume1	
+Ustawienia regionalne-Polska	
+Warstwa abstrakcji sprzętu-Wersja = "10.0.19041.3636"	
+Nazwa użytkownika-DESKTOP-9U1S1UU\TECE	
+Strefa czasowa	Środkowoeuropejski czas stand.	
+Zainstalowana pamięć fizyczna (RAM)-8,00 GB	
+Całkowita pamięć fizyczna-6,95 GB	
+Dostępna pamięć fizyczna-2,98 GB	
+Całkowity rozmiar pamięci wirtualnej-8,70 GB	
+Dostępna pamięć wirtualna-3,85 GB	
+Obszar pliku stronicowania-1,75 GB	
+Plik stronicowania-C:\pagefile.sys		
