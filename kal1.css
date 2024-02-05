@@ -13,12 +13,11 @@ body {
     background-color: rgba(150, 65, 39, 0.63);
 }
 .kalkulator {
-    margin: 25px;
     display: grid;
     justify-content: center;
     align-content: center;
     grid-template-columns: repeat(5, 80px);
-    grid-template-rows: minmax(px, auto) repeat(5,80px);
+    grid-template-rows: minmax(auto) repeat(5,80px);
     min-height: 70vh;
 }
 .wynik {
