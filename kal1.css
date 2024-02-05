@@ -18,7 +18,7 @@ body {
     align-content: center;
     grid-template-columns: repeat(5, 80px);
     grid-template-rows: min(80px) repeat(5,40px);
-    min-height: 70vh;
+    min-height: 600px;
 }
 .wynik {
     grid-column: 1 / -1;
