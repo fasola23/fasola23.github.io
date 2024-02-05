@@ -4,7 +4,12 @@
     box-sizing: border-box;
     color:white;
 }
+#strona{
+	width:950px;
+	margin:0 auto;
+}
 body {
+
     background-color: rgba(150, 65, 39, 0.63);
 }
 .kalkulator {
