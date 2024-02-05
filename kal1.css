@@ -12,6 +12,8 @@ body {
     background-color: rgba(150, 65, 39, 0.63);
 }
 .kalkulator {
+    height: 400px;
+    width: 300px;
     display: grid;
     justify-content: center;
     align-content: center;
