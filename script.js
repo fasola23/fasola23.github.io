@@ -115,7 +115,7 @@ const wyczyscWynik = () => {
 }
 
 usun.addEventListener('click', () => {
-    ununLiczbe()
+    usunLiczbe()
     zaktualizujWynik()
 })
 
