@@ -99,15 +99,16 @@ b {
     <div id="game-board"></div>
     <script>
         const board = document.getElementById('game-board');
-        const gridSize = 20;
+        const gridSize = 15;
+        const cellSize = 20;
         const snakeSpeed = 150;
 
         let snake = [{ x: 0, y: 0 }];
         let food = generateFood();
 
         function generateFood() {
-            const foodX = Math.floor(Math.random() * gridSize) * 20;
-            const foodY = Math.floor(Math.random() * gridSize) * 20;
+            const foodX = Math.floor(Math.random() * gridSize) * cellSize;
+            const foodY = Math.floor(Math.random() * gridSize) * cellSize;
             return { x: foodX, y: foodY };
         }
 
@@ -135,10 +136,10 @@ b {
             const head = { ...snake[0] };
 
             // Move snake
-            if (direction === 'up') head.y -= 20;
-            else if (direction === 'down') head.y += 20;
-            else if (direction === 'left') head.x -= 20;
-            else if (direction === 'right') head.x += 20;
+            if (direction === 'up') head.y -= cellSize;
+            else if (direction === 'down') head.y += cellSize;
+            else if (direction === 'left') head.x -= cellSize;
+            else if (direction === 'right') head.x += cellSize;
 
             // Check for collision with food
             if (head.x === food.x && head.y === food.y) {
@@ -150,7 +151,7 @@ b {
             }
 
             // Check for collision with walls
-            if (head.x < 0 || head.x >= gridSize * 20 || head.y < 0 || head.y >= gridSize * 20) {
+            if (head.x < 0 || head.x >= gridSize * cellSize || head.y < 0 || head.y >= gridSize * cellSize) {
                 alert('Game Over!');
 
                 // Restart the game
