@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<title>BITWINE</title>
+<link rel="icon" href="ok.png" type="image/x-icon">
+<meta charset="UTF-8">
+<style>
+#strona{
+	width:950px;
+	margin:0 auto;
+}
+body {
+	background-color: rgba(150, 65, 39, 0.63);
+	
+}
+
+#gora {
+	width:475px;
+	height:20px;
+	float:right;
+	background-color:blue;
+	color:white;
+}
+#gorac {
+	width:475px;
+	height:20px;
+	float:left;
+	background-color:blue;
+	color:white;
+}
+.o {
+	font-size:10px;
+	
+}
+.i {
+	font-size:10px;
+}
+.k {
+	font-size:10px;
+}
+.n {
+	font-size:10px;
+}
+.q {
+	word-spacing:50px;
+	font-size:10px;
+}
+a {
+	color:white;
+	text-decoration:none;
+}
+img.V {
+	width:300px;
+	height:350px;
+	background-position:right;
+}
+b {
+	text-align:center;
+}
+#game-board {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            position: relative;
+        }
+
+        .snake-part {
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            position: absolute;
+        }
+
+.food {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            position: absolute;
+ }
+</style>
+</head>
+<body>
+<div id="strona">
+		<div id="gora">
+			<span class="q">
+					<span class="i"><a href="przygody.html">MENU</a></span>
+						<span class="k"><a href="historia.html">Our-Story</a></span>
+							<span class="n"><a href="index.html">Powrót</a></span>
+								<span class="o"><a href="zdjecia.html">zdjecia</a></span>
+									<span class="y"><a href="kal.html">kalkulator</a></span>
+                                    <span class="l"><a href="gry.html">gra</a></span>
+			</span>
+		</div>
+		<div id="gorac">
+			<b>BITWINE</b>
+				<img src="BITWINE2.png" width="10px" height="19px">
+		</div>
+		<h1>Snake Game</h1>
+    <div id="game-board"></div>
+    <script>
+        const board = document.getElementById('game-board');
+        const gridSize = 20;
+        const snakeSpeed = 150;
+
+        let snake = [{ x: 0, y: 0 }];
+        let food = generateFood();
+
+        function generateFood() {
+            const foodX = Math.floor(Math.random() * gridSize) * 20;
+            const foodY = Math.floor(Math.random() * gridSize) * 20;
+            return { x: foodX, y: foodY };
+        }
+
+        function draw() {
+            board.innerHTML = '';
+
+            // Draw snake
+            snake.forEach(part => {
+                const snakePart = document.createElement('div');
+                snakePart.className = 'snake-part';
+                snakePart.style.left = part.x + 'px';
+                snakePart.style.top = part.y + 'px';
+                board.appendChild(snakePart);
+            });
+
+            // Draw food
+            const foodElement = document.createElement('div');
+            foodElement.className = 'food';
+            foodElement.style.left = food.x + 'px';
+            foodElement.style.top = food.y + 'px';
+            board.appendChild(foodElement);
+        }
+
+        function move() {
+            const head = { ...snake[0] };
+
+            // Move snake
+            if (direction === 'up') head.y -= 20;
+            else if (direction === 'down') head.y += 20;
+            else if (direction === 'left') head.x -= 20;
+            else if (direction === 'right') head.x += 20;
+
+            // Check for collision with food
+            if (head.x === food.x && head.y === food.y) {
+                snake.unshift(food);
+                food = generateFood();
+            } else {
+                snake.pop();
+                snake.unshift(head);
+            }
+
+            // Check for collision with walls
+            if (head.x < 0 || head.x >= gridSize * 20 || head.y < 0 || head.y >= gridSize * 20) {
+                alert('Game Over!');
+
+                // Restart the game
+                snake = [{ x: 0, y: 0 }];
+                food = generateFood();
+                direction = 'right';
+            }
+        }
+
+        let direction = 'right';
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowUp' && direction !== 'down') direction = 'up';
+            else if (event.key === 'ArrowDown' && direction !== 'up') direction = 'down';
+            else if (event.key === 'ArrowLeft' && direction !== 'right') direction = 'left';
+            else if (event.key === 'ArrowRight' && direction !== 'left') direction = 'right';
+        });
+
+        setInterval(() => {
+            move();
+            draw();
+        }, snakeSpeed);
+    </script>
+	</div>
+</body>
+</html>
