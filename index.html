@@ -20,6 +20,9 @@
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1 {
@@ -28,30 +31,40 @@
         }
 
         #gora {
-            width: 950px;
+            width: 100%;
             height: 40px;
             background-color: #2980b9;
             color: white;
             line-height: 40px;
             border-radius: 5px;
             margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
         }
 
         #gora a {
             color: white;
             text-decoration: none;
-            margin: 0 20px;
             font-size: 14px;
         }
 
         #gorac {
-            width: 950px;
+            width: 100%;
             height: 40px;
             background-color: #27ae60;
             color: white;
             text-align: center;
             line-height: 40px;
             border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #gorac b {
+            margin-left: 5px;
         }
 
         .o, .i, .k, .n, .q {
@@ -77,40 +90,17 @@
             width: 300px;
             height: 350px;
             background-position: right;
-            display: block;
-            margin: 0 auto;
             border-radius: 5px;
             margin-top: 20px;
-        }
-
-        b {
-            text-align: center;
-            color: #555;
-            margin-top: 10px;
-            display: block;
         }
 
         #kalendarz {
             float: right;
             margin-top: 20px;
-        }
-
-        #inneLinki {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #inneLinki span {
-            margin: 0 10px;
-            display: inline-block;
-        }
-		#kalendarz {
-            width: 300px;
-            border: 1px solid #ccc;
+            background-color: #f39c12;
             border-radius: 5px;
             padding: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
         }
 
         #kalendarz h2 {
@@ -153,18 +143,20 @@
     <!-- Część 1: Obrazek, Tytuł i Górne Menu -->
     <div id="strona">
         <div id="gora">
-            <a href="przygody.html">MENU</a>
-            <a href="historia.html">Our-Story</a>
-            <a href="index.html">Powrót</a>
-            <a href="zdjecia.html">zdjecia</a>
-            <a href="kal.html">kalkulator</a>
-            <a href="gry.html">gra</a>
+            <b>BITWINE</b>
+            <img src="BITWINE2.png" width="10px" height="19px">
+            <div>
+                <a href="przygody.html">MENU</a>
+                <a href="historia.html">Our-Story</a>
+                <a href="index.html">Powrót</a>
+                <a href="zdjecia.html">zdjecia</a>
+                <a href="kal.html">kalkulator</a>
+                <a href="gry.html">gra</a>
+            </div>
         </div>
         <div id="gorac">
-            <b>BITWINE</b><img src="BITWINE2.png" width="10px" height="19px">
-            
+            <h1>HELLO WORLD IN MY COMPANY</h1>
         </div>
-        <h1>HELLO WORLD IN MY COMPANY</h1>
         <center><img src="BITWINE2.png" class="V"></center>
     </div>
 
@@ -178,18 +170,17 @@
     </div>
 
     <!-- Część 3: Kalendarz -->
-    <div id="strona" style="background-color: #f39c12;">
-        <div id="kalendarz">
-            <h2>Kalendarz</h2>
+    <div id="kalendarz">
+        <h2>Kalendarz</h2>
         <div id="dni"></div>
         <div>
             <span id="poprzedni-miesiac">&#9664;</span>
             <span id="aktualny-miesiac">Miesiąc</span>
             <span id="nastepny-miesiac">&#9654;</span>
         </div>
-        </div>
     </div>
-	<script>
+
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dniElement = document.getElementById('dni');
             const poprzedniMiesiac = document.getElementById('poprzedni-miesiac');
@@ -249,4 +240,4 @@
         });
     </script>
 </body>
-</html
+</html>
