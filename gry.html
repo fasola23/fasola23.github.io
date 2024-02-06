@@ -4,6 +4,7 @@
 <title>BITWINE</title>
 <link rel="icon" href="ok.png" type="image/x-icon">
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 #strona{
 	width:950px;
@@ -59,20 +60,20 @@ h1 {
     text-align: center;
 }
 #game-board {
-      display: grid;
+    display: grid;
       grid-template-columns: repeat(20, 20px);
       gap: 1px;
       width: 400px;
       height: 400px;
-      border: 2px solid #ccc;
+      border: 2px solid #000; 
       overflow: hidden;
+      background-color: #000
     }
 
     .cell {
-      width: 20px;
+        width: 20px;
       height: 20px;
-      border: 1px solid #ccc;
-      background-color: #fff;
+      border: 1px solid #000;
     }
 
     .snake {
@@ -288,7 +289,7 @@ h1 {
             };
           
             initializeGame();
-          </script>
+            </script>
 	</div>
 </body>
 </html>
