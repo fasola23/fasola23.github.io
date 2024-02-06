@@ -119,8 +119,47 @@ h1 {
         <button onclick="startGame()">Start Game</button>
       </div>
       
-    <script>
-        const board = document.getElementById('game-board');
+    <script> 
+        let rankingData = [
+    { name: 'Player1', score: 10 },
+    { name: 'Player2', score: 8 },
+    { name: 'Player3', score: 5 },
+    // Add more entries as needed
+  ];
+
+  const rankingList = document.getElementById('ranking-list');
+  const playerNameInput = document.getElementById('playerName');
+
+  const updateRanking = () => {
+    rankingList.innerHTML = '';
+    const sortedRanking = rankingData.sort((a, b) => b.score - a.score);
+
+    sortedRanking.forEach(entry => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${entry.name}: ${entry.score} points`;
+      rankingList.appendChild(listItem);
+    });
+  };
+
+  const addToRanking = (name, score) => {
+    rankingData.push({ name, score });
+    updateRanking();
+  };
+
+  const startGame = () => {
+    const playerName = playerNameInput.value.trim();
+
+    if (playerName) {
+
+      alert(`Game started for player: ${playerName}`);
+      
+      const playerScore = 15; 
+      addToRanking(playerName, playerScore);
+    } else {
+      alert('Please enter your name before starting the game.');
+    }
+  };
+  const board = document.getElementById('game-board');
         const gridSize = 15;
         const cellSize = 20;
         const snakeSpeed = 150;
@@ -196,47 +235,6 @@ h1 {
             move();
             draw();
         }, snakeSpeed);
-         
-        let rankingData = [
-    { name: 'Player1', score: 10 },
-    { name: 'Player2', score: 8 },
-    { name: 'Player3', score: 5 },
-    // Add more entries as needed
-  ];
-
-  const rankingList = document.getElementById('ranking-list');
-  const playerNameInput = document.getElementById('playerName');
-
-  const updateRanking = () => {
-    rankingList.innerHTML = '';
-    const sortedRanking = rankingData.sort((a, b) => b.score - a.score);
-
-    sortedRanking.forEach(entry => {
-      const listItem = document.createElement('li');
-      listItem.textContent = `${entry.name}: ${entry.score} points`;
-      rankingList.appendChild(listItem);
-    });
-  };
-
-  const addToRanking = (name, score) => {
-    rankingData.push({ name, score });
-    updateRanking();
-  };
-
-  const startGame = () => {
-    const playerName = playerNameInput.value.trim();
-
-    if (playerName) {
-      // Start the game here
-      alert(`Game started for player: ${playerName}`);
-      // Example: Call addToRanking when the game ends with the player's name and score
-      // Replace this with your actual game over logic
-      const playerScore = 15; // Example score
-      addToRanking(playerName, playerScore);
-    } else {
-      alert('Please enter your name before starting the game.');
-    }
-  };
     </script>
 	</div>
 </body>
