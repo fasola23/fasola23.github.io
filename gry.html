@@ -60,44 +60,48 @@
     }
 
     #game-board {
-      display: grid;
-      grid-template-columns: repeat(20, 20px);
-      gap: 1px;
-      width: 400px;
-      height: 400px;
-      border: 2px solid #000;
-      overflow: hidden;
-      background-color: #000;
-    }
+  display: grid;
+  grid-template-columns: repeat(20, 20px);
+  gap: 1px;
+  width: 400px;
+  height: 400px;
+  border: 2px solid #000;
+  overflow: hidden;
+  background-color: #000;
+}
 
-    .cell {
-      width: 20px;
-      height: 20px;
-      border: 1px solid #000;
-      background-color: #fff;
-    }
+.cell {
+  width: 20px;
+  height: 20px;
+}
 
-    .snake {
-      background-color: #333;
-    }
+.snake {
+  background-color: #333;
+}
 
-    .food {
-      background-color: red;
-    }
+.food {
+  background-color: red;
+}
 
-    #ranking-container {
-      text-align: center;
-      margin-top: 20px;
-    }
+#score {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+}
 
-    #ranking-list {
-      list-style-type: none;
-      padding: 0;
-    }
+#ranking-container {
+  text-align: center;
+  margin-top: 20px;
+}
 
-    #ranking-list li {
-      margin-bottom: 5px;
-    }
+#ranking-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#ranking-list li {
+  margin-bottom: 5px;
+}
   </style>
 </head>
 <body>
@@ -117,27 +121,19 @@
       <img src="BITWINE2.png" width="10px" height="19px">
     </div>
   </div>
-
-  <div>
-    <h1>Snake Game</h1>
-    <label for="playerName">Enter your name:</label>
-    <input type="text" id="playerName" placeholder="Your Name">
-    <button onclick="startGame();">Start Game</button>
-  </div>
-  
+  <h1>Snake game</h1>
   <div id="game-board"></div>
-  
+  <div id="score">Score: <span id="score-value">0</span></div>
   <div id="ranking-container">
     <h2>Ranking</h2>
     <ol id="ranking-list"></ol>
   </div>
-  
   <script>
     const gridSize = 20;
     const cellSize = 20;
     const boardSize = 400;
     const boardCells = boardSize / cellSize;
-    let snake = [{ row: 10, col: 10 }];
+    let snake = [{ row: 5, col: 5 }];
     let direction = 'right';
     let food = {};
     let isGameOver = false;
@@ -145,8 +141,8 @@
     let playerName = '';
 
     const gameBoard = document.getElementById('game-board');
+    const scoreValue = document.getElementById('score-value');
     const rankingList = document.getElementById('ranking-list');
-    const playerNameInput = document.getElementById('playerName');
 
     const initializeGame = () => {
       createGameBoard();
@@ -209,6 +205,7 @@
 
       if (head.row === food.row && head.col === food.col) {
         score += 5;
+        scoreValue.textContent = score;
         generateFood();
       } else {
         const tail = snake.pop();
@@ -242,30 +239,23 @@
     };
 
     const startGame = () => {
-      playerName = playerNameInput.value.trim();
-      if (playerName) {
-        initializeGame();
-        isGameOver = false;
-        score = 0;
-        snake = [{ row: 10, col: 10 }];
-        direction = 'right';
-        playerNameInput.disabled = true;
-        setInterval(() => {
-          if (!isGameOver) {
-            moveSnake();
-            savePlayerData();
-          }
-        }, 200);
-      } else {
-        alert('Please enter your name before starting the game.');
-      }
+      initializeGame();
+      isGameOver = false;
+      score = 0;
+      snake = [{ row: 5, col: 5 }];
+      direction = 'right';
+      scoreValue.textContent = score;
+      setInterval(() => {
+        if (!isGameOver) {
+          moveSnake();
+          savePlayerData();
+        }
+      }, 200);
     };
 
     const endGame = () => {
       alert(`Game Over! Your score: ${score}`);
-      playerNameInput.disabled = false;
       isGameOver = true;
-
       addToRanking(playerName, score);
       savePlayerData();
     };
@@ -286,13 +276,12 @@
       const storedScore = localStorage.getItem('snakeScore');
 
       if (storedName && storedScore) {
-        playerNameInput.value = storedName;
         playerName = storedName;
-        score = parseInt(storedScore, 10);
       }
     };
 
-    initializeGame();
+    // Initialize the game
+    startGame();
   </script>
 </body>
 </html>
