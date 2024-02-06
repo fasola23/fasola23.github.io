@@ -62,33 +62,38 @@ h1 {
       display: grid;
       grid-template-columns: repeat(20, 20px);
       gap: 1px;
+      width: 400px;
+      height: 400px;
+      border: 2px solid #ccc;
+      overflow: hidden;
     }
-.cell {
+
+    .cell {
       width: 20px;
       height: 20px;
       border: 1px solid #ccc;
       background-color: #fff;
     }
 
-.snake {
+    .snake {
       background-color: #333;
     }
 
-.food {
+    .food {
       background-color: red;
     }
 
-#ranking-container {
+    #ranking-container {
       text-align: center;
       margin-top: 20px;
     }
 
-#ranking-list {
+    #ranking-list {
       list-style-type: none;
       padding: 0;
     }
 
-#ranking-list li {
+    #ranking-list li {
       margin-bottom: 5px;
     }
 </style>
@@ -111,8 +116,8 @@ h1 {
 		</div>
 		<div>
             <h1>Snake Game</h1>
-            <label for="playerName">Wpisz swój nik:</label>
-            <input type="text" id="playerName" placeholder="Twój nik">
+            <label for="playerName">Enter your name:</label>
+            <input type="text" id="playerName" placeholder="Your Name">
             <button onclick="startGame()">Start Game</button>
           </div>
           
@@ -124,6 +129,9 @@ h1 {
           </div>
           <script>
             const gridSize = 20;
+            const cellSize = 20;
+            const boardSize = 400;
+            const boardCells = boardSize / cellSize;
             let snake = [{ row: 10, col: 10 }];
             let direction = 'right';
             let food = {};
@@ -139,11 +147,12 @@ h1 {
               createGameBoard();
               generateFood();
               drawGameBoard();
+              restorePlayerData();
             };
           
             const createGameBoard = () => {
-              for (let i = 0; i < gridSize; i++) {
-                for (let j = 0; j < gridSize; j++) {
+              for (let i = 0; i < boardCells; i++) {
+                for (let j = 0; j < boardCells; j++) {
                   const cell = document.createElement('div');
                   cell.classList.add('cell');
                   cell.id = `${i}-${j}`;
@@ -160,11 +169,15 @@ h1 {
           
               snake.forEach(segment => {
                 const snakeCell = document.getElementById(`${segment.row}-${segment.col}`);
-                snakeCell.classList.add('snake');
+                if (snakeCell) {
+                  snakeCell.classList.add('snake');
+                }
               });
           
               const foodCell = document.getElementById(`${food.row}-${food.col}`);
-              foodCell.classList.add('food');
+              if (foodCell) {
+                foodCell.classList.add('food');
+              }
             };
           
             const moveSnake = () => {
@@ -189,22 +202,21 @@ h1 {
           
               const headCell = document.getElementById(`${head.row}-${head.col}`);
           
-              // Check for collision with food
               if (head.row === food.row && head.col === food.col) {
                 score += 5;
                 generateFood();
               } else {
-                // If not eating food, remove the tail
                 const tail = snake.pop();
                 const tailCell = document.getElementById(`${tail.row}-${tail.col}`);
-                tailCell.classList.remove('snake');
+                if (tailCell) {
+                  tailCell.classList.remove('snake');
+                }
               }
           
-              // Check for collision with walls or itself
               if (
-                head.row < 0 || head.row >= gridSize ||
-                head.col < 0 || head.col >= gridSize ||
-                headCell.classList.contains('snake')
+                head.row < 0 || head.row >= boardCells ||
+                head.col < 0 || head.col >= boardCells ||
+                snake.some(segment => segment.row === head.row && segment.col === head.col)
               ) {
                 endGame();
               }
@@ -216,8 +228,8 @@ h1 {
               let newFood;
               do {
                 newFood = {
-                  row: Math.floor(Math.random() * gridSize),
-                  col: Math.floor(Math.random() * gridSize)
+                  row: Math.floor(Math.random() * boardCells),
+                  col: Math.floor(Math.random() * boardCells)
                 };
               } while (snake.some(segment => segment.row === newFood.row && segment.col === newFood.col));
           
@@ -236,20 +248,21 @@ h1 {
                 setInterval(() => {
                   if (!isGameOver) {
                     moveSnake();
+                    savePlayerData();
                   }
                 }, 200);
               } else {
-                alert('Przed rozpoczęciem gry wpisz swój Nik.');
+                alert('Please enter your name before starting the game.');
               }
             };
           
             const endGame = () => {
-              alert(`Game Over! Twój nik: ${score}`);
+              alert(`Game Over! Your score: ${score}`);
               playerNameInput.disabled = false;
               isGameOver = true;
           
-              // Add player to the ranking
               addToRanking(playerName, score);
+              savePlayerData();
             };
           
             const addToRanking = (name, score) => {
@@ -258,7 +271,22 @@ h1 {
               rankingList.appendChild(listItem);
             };
           
-            // Initialize the game
+            const savePlayerData = () => {
+              localStorage.setItem('snakePlayerName', playerName);
+              localStorage.setItem('snakeScore', score.toString());
+            };
+          
+            const restorePlayerData = () => {
+              const storedName = localStorage.getItem('snakePlayerName');
+              const storedScore = localStorage.getItem('snakeScore');
+          
+              if (storedName && storedScore) {
+                playerNameInput.value = storedName;
+                playerName = storedName;
+                score = parseInt(storedScore, 10);
+              }
+            };
+          
             initializeGame();
           </script>
 	</div>
