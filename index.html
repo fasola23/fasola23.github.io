@@ -2,288 +2,116 @@
 <html lang="pl">
 <head>
     <title>BITWINE</title>
-    <link rel="icon" href="ok.png" type="image/x-icon">
+    <link rel="icon" href="ok.PNG" type="image/x-icon">
     <meta charset="UTF-8">
     <style>
         body {
-            background-color: #f0f0f0;
+            background-image: url('BITWINE1.PNG');
+            background-repeat: no-repeat;
+            background-size: cover;
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: stretch;
         }
 
-        #lewaCzesc {
-            width: 500px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        #strona {
+            width: 950px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 10px;
-            margin-right: 10px;
-        }
-
-        #srodkowaCzesc {
-            width: 450px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #goraCzesc, #dolCzesc {
-            width: 100%;
-            background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
             border-radius: 10px;
-            margin-bottom: 10px;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
         }
 
         h1 {
-            color: #3498db;
+            color: yellow;
             text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
         }
 
         #gora {
             width: 100%;
             height: 40px;
-            background-color: #2980b9;
+            background-color: blue;
             color: white;
             line-height: 40px;
             border-radius: 5px;
             margin-bottom: 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             padding: 0 20px;
         }
 
         #gora a {
             color: white;
             text-decoration: none;
+            margin: 0 20px;
             font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        #gora a:hover {
+            color: #3498db;
         }
 
         #gorac {
             width: 100%;
             height: 40px;
-            background-color: #27ae60;
+            background-color: blue;
             color: white;
             text-align: center;
             line-height: 40px;
             border-radius: 5px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #gorac b {
-            margin-left: 5px;
         }
 
         .o, .i, .k, .n, .q {
-            font-size: 12px;
+            font-size: 10px;
             color: #555;
         }
 
         .q {
-            word-spacing: 20px;
+            word-spacing: 50px;
         }
 
         a {
-            color: #3498db;
+            color: white;
             text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #555;
         }
 
         img.V {
             width: 100%;
             max-width: 300px;
             height: auto;
+            background-position: right;
+            display: block;
+            margin: 20px auto;
             border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        #kalendarz {
-            background-color: #f39c12;
-            border-radius: 5px;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        #kalendarz h2 {
-            margin-top: 0;
-            text-align: center;
-            color: #3498db;
-        }
-
-        #dni {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        #dni div {
-            padding: 5px;
-            border-bottom: 1px solid #eee;
-        }
-
-        #dni div:first-child {
-            color: #e74c3c;
-        }
-
-        #dni div:last-child {
-            color: #2ecc71;
-        }
-
-        #dni div:hover {
-            background-color: #f9f9f9;
-        }
-
-        #poprzedni-miesiac, #nastepny-miesiac {
-            cursor: pointer;
-            color: #3498db;
         }
     </style>
 </head>
 <body>
-    <!-- Lewa Część -->
-    <div id="lewaCzesc">
+    <div id="strona">
         <div id="gora">
-            <b>BITWINE</b>
-            <img src="BITWINE2.png" width="10px" height="19px">
-            <div>
-                <a href="przygody.html">MENU</a>
-                <a href="historia.html">Our-Story</a>
-                <a href="index.html">Powrót</a>
-                <a href="zdjecia.html">zdjecia</a>
-                <a href="kal.html">kalkulator</a>
-                <a href="gry.html">gra</a>
-            </div>
+            <span class="q">
+                <span class="i"><a href="przygody.html">MENU</a></span>
+        		<span class="k"><a href="historia.html">Our-Story</a></span>
+        		<span class="n"><a href="index.html">Powrót</a></span>
+        		<span class="o"><a href="zdjecia.html">zdjecia</a></span>
+        		<span class="y"><a href="kal.html">kalkulator</a></span>
+        		<span class="l"><a href="gry.html">gra</a></span>
+            </span>
         </div>
         <div id="gorac">
-            <h1>HELLO WORLD IN MY COMPANY</h1>
+            <b>BITWINE</b>
         </div>
-        <center><img src="BITWINE2.png" class="V"></center>
+        <h1>HELLO WORLD IN MY COMPANY</h1>
+        <center>
+            <img src="kot.GIF">
+        </center>
+        <img src="BITWINE2.PNG" class="V">
     </div>
-
-    <!-- Środkowa Część -->
-    <div id="srodkowaCzesc">
-        <!-- Górna Część -->
-        <div id="goraCzesc">
-            <div id="gora">
-                <b>BITWINE</b>
-                <img src="BITWINE2.png" width="10px" height="19px">
-                <div>
-                    <a href="przygody.html">MENU</a>
-                    <a href="historia.html">Our-Story</a>
-                    <a href="index.html">Powrót</a>
-                    <a href="zdjecia.html">zdjecia</a>
-                    <a href="kal.html">kalkulator</a>
-                    <a href="gry.html">gra</a>
-                </div>
-            </div>
-            <div id="gorac">
-                <h1>HELLO WORLD IN MY COMPANY</h1>
-            </div>
-            <center><img src="BITWINE2.png" class="V"></center>
-        </div>
-
-        <!-- Dolna Część -->
-        <div id="dolCzesc">
-            <div id="gora">
-                <b>BITWINE</b>
-                <img src="BITWINE2.png" width="10px" height="19px">
-                <div>
-                    <a href="przygody.html">MENU</a>
-                    <a href="historia.html">Our-Story</a>
-                    <a href="index.html">Powrót</a>
-                    <a href="zdjecia.html">zdjecia</a>
-                    <a href="kal.html">kalkulator</a>
-                    <a href="gry.html">gra</a>
-                </div>
-            </div>
-            <div id="gorac">
-                <h1>HELLO WORLD IN MY COMPANY</h1>
-            </div>
-            <center><img src="BITWINE2.png" class="V"></center>
-        </div>
-    </div>
-
-    <!-- Kalendarz -->
-    <div id="kalendarz">
-        <h2>Kalendarz</h2>
-        <div id="dni"></div>
-        <div>
-            <span id="poprzedni-miesiac">&#9664;</span>
-            <span id="aktualny-miesiac">Miesiąc</span>
-            <span id="nastepny-miesiac">&#9654;</span>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const dniElement = document.getElementById('dni');
-            const poprzedniMiesiac = document.getElementById('poprzedni-miesiac');
-            const nastepnyMiesiac = document.getElementById('nastepny-miesiac');
-            const aktualnyMiesiac = document.getElementById('aktualny-miesiac');
-
-            const dzis = new Date();
-            let rok = dzis.getFullYear();
-            let miesiac = dzis.getMonth();
-
-            function wyswietlKalendarz(miesiac, rok) {
-                dniElement.innerHTML = '';
-
-                const dniWmiesiacu = new Date(rok, miesiac + 1, 0).getDate();
-                const pierwszyDzien = new Date(rok, miesiac, 1).getDay();
-
-                const dniPoprzedniegoMiesiaca = new Date(rok, miesiac, 0).getDate();
-                for (let i = pierwszyDzien; i > 0; i--) {
-                    const dzien = dniPoprzedniegoMiesiaca - i + 1;
-                    const div = document.createElement('div');
-                    div.innerText = dzien;
-                    dniElement.appendChild(div);
-                }
-
-                for (let i = 1; i <= dniWmiesiacu; i++) {
-                    const div = document.createElement('div');
-                    div.innerText = i;
-                    dniElement.appendChild(div);
-                }
-            }
-
-            wyswietlKalendarz(miesiac, rok);
-
-            aktualnyMiesiac.innerText = `${miesiac + 1}/${rok}`;
-
-            poprzedniMiesiac.addEventListener('click', function() {
-                if (miesiac === 0) {
-                    rok--;
-                    miesiac = 11;
-                } else {
-                    miesiac--;
-                }
-                wyswietlKalendarz(miesiac, rok);
-                aktualnyMiesiac.innerText = `${miesiac + 1}/${rok}`;
-            });
-
-            nastepnyMiesiac.addEventListener('click', function() {
-                if (miesiac === 11) {
-                    rok++;
-                    miesiac = 0;
-                } else {
-                    miesiac++;
-                }
-                wyswietlKalendarz(miesiac, rok);
-                aktualnyMiesiac.innerText = `${miesiac + 1}/${rok}`;
-            });
-        });
-    </script>
 </body>
 </html>
