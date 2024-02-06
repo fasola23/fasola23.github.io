@@ -11,7 +11,10 @@
 }
 body {
 	background-color: rgba(150, 65, 39, 0.63);
-	
+	display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
 }
 
 #gora {
@@ -56,36 +59,37 @@ h1 {
     text-align: center;
 }
 #game-board {
-            width: 300px;
-            height: 300px;
-            border: 1px solid #000;
-            position: relative;
-        }
+      display: grid;
+      grid-template-columns: repeat(20, 20px);
+      gap: 1px;
+    }
+.cell {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
 
-        .snake-part {
-            width: 20px;
-            height: 20px;
-            background-color: green;
-            position: absolute;
-        }
+.snake {
+      background-color: #333;
+    }
 
 .food {
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            position: absolute;
- }
-#ranking-container {
-      text-align: right;
-      margin-right: 20px;
+      background-color: red;
     }
+
+#ranking-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
 #ranking-list {
       list-style-type: none;
       padding: 0;
     }
 
 #ranking-list li {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 </style>
 </head>
@@ -105,134 +109,158 @@ h1 {
 			<b>BITWINE</b>
 				<img src="BITWINE2.png" width="10px" height="19px">
 		</div>
-		<h1>Snake Game</h1>
-    <div id="game-board"></div>
-    <div id="ranking-container">
-        <ol id="ranking-list"></ol>
-      </div>
-      
-      <div>
-        <label for="playerName">Twój nik:</label>
-        <input type="text" id="playerName" placeholder="Wpisz swój nik">
-        <button onclick="startGame()">Start Game</button>
-      </div>
-      
-    <script> 
-        let rankingData = [
-    { name: 'Player1', score: 10 },
-    { name: 'Player2', score: 8 },
-    { name: 'Player3', score: 5 },
-  ];
-
-  const rankingList = document.getElementById('ranking-list');
-  const playerNameInput = document.getElementById('playerName');
-
-  const updateRanking = () => {
-    rankingList.innerHTML = '';
-    const sortedRanking = rankingData.sort((a, b) => b.score - a.score);
-
-    sortedRanking.forEach(entry => {
-      const listItem = document.createElement('li');
-      listItem.textContent = `${entry.name}: ${entry.score} points`;
-      rankingList.appendChild(listItem);
-    });
-  };
-
-  const addToRanking = (name, score) => {
-    rankingData.push({ name, score });
-    updateRanking();
-  };
-
-  const startGame = () => {
-    const playerName = playerNameInput.value.trim();
-
-    if (playerName) {
-
-      alert(`Game started for player: ${playerName}`);
-      
-      const playerScore = 15; 
-      addToRanking(playerName, playerScore);
-    } else {
-      alert('Please enter your name before starting the game.');
-    }
-  };
-  const board = document.getElementById('game-board');
-        const gridSize = 15;
-        const cellSize = 20;
-        const snakeSpeed = 150;
-
-        let snake = [{ x: 0, y: 0 }];
-        let food = generateFood();
-
-        function generateFood() {
-            const foodX = Math.floor(Math.random() * gridSize) * cellSize;
-            const foodY = Math.floor(Math.random() * gridSize) * cellSize;
-            return { x: foodX, y: foodY };
-        }
-
-        function draw() {
-            board.innerHTML = '';
-
-            // Draw snake
-            snake.forEach(part => {
-                const snakePart = document.createElement('div');
-                snakePart.className = 'snake-part';
-                snakePart.style.left = part.x + 'px';
-                snakePart.style.top = part.y + 'px';
-                board.appendChild(snakePart);
-            });
-
-           
-            const foodElement = document.createElement('div');
-            foodElement.className = 'food';
-            foodElement.style.left = food.x + 'px';
-            foodElement.style.top = food.y + 'px';
-            board.appendChild(foodElement);
-        }
-
-        function move() {
-            const head = { ...snake[0] };
-
-            
-            if (direction === 'up') head.y -= cellSize;
-            else if (direction === 'down') head.y += cellSize;
-            else if (direction === 'left') head.x -= cellSize;
-            else if (direction === 'right') head.x += cellSize;
-
-            
-            if (head.x === food.x && head.y === food.y) {
-                snake.unshift(food);
-                food = generateFood();
-            } else {
-                snake.pop();
-                snake.unshift(head);
-            }
-
-           
-            if (head.x < 0 || head.x >= gridSize * cellSize || head.y < 0 || head.y >= gridSize * cellSize) {
-                alert('Koniec gry!');
-
-                // Restart the game
-                snake = [{ x: 0, y: 0 }];
-                food = generateFood();
+		<div>
+            <h1>Snake Game</h1>
+            <label for="playerName">Wpisz swój nik:</label>
+            <input type="text" id="playerName" placeholder="Twój nik">
+            <button onclick="startGame()">Start Game</button>
+          </div>
+          
+          <div id="game-board"></div>
+          
+          <div id="ranking-container">
+            <h2>Ranking</h2>
+            <ol id="ranking-list"></ol>
+          </div>
+          <script>
+            const gridSize = 20;
+            let snake = [{ row: 10, col: 10 }];
+            let direction = 'right';
+            let food = {};
+            let isGameOver = false;
+            let score = 0;
+            let playerName = '';
+          
+            const gameBoard = document.getElementById('game-board');
+            const rankingList = document.getElementById('ranking-list');
+            const playerNameInput = document.getElementById('playerName');
+          
+            const initializeGame = () => {
+              createGameBoard();
+              generateFood();
+              drawGameBoard();
+            };
+          
+            const createGameBoard = () => {
+              for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                  const cell = document.createElement('div');
+                  cell.classList.add('cell');
+                  cell.id = `${i}-${j}`;
+                  gameBoard.appendChild(cell);
+                }
+              }
+            };
+          
+            const drawGameBoard = () => {
+              const cells = document.querySelectorAll('.cell');
+              cells.forEach(cell => {
+                cell.classList.remove('snake', 'food');
+              });
+          
+              snake.forEach(segment => {
+                const snakeCell = document.getElementById(`${segment.row}-${segment.col}`);
+                snakeCell.classList.add('snake');
+              });
+          
+              const foodCell = document.getElementById(`${food.row}-${food.col}`);
+              foodCell.classList.add('food');
+            };
+          
+            const moveSnake = () => {
+              const head = { ...snake[0] };
+          
+              switch (direction) {
+                case 'up':
+                  head.row--;
+                  break;
+                case 'down':
+                  head.row++;
+                  break;
+                case 'left':
+                  head.col--;
+                  break;
+                case 'right':
+                  head.col++;
+                  break;
+              }
+          
+              snake.unshift(head);
+          
+              const headCell = document.getElementById(`${head.row}-${head.col}`);
+          
+              // Check for collision with food
+              if (head.row === food.row && head.col === food.col) {
+                score += 5;
+                generateFood();
+              } else {
+                // If not eating food, remove the tail
+                const tail = snake.pop();
+                const tailCell = document.getElementById(`${tail.row}-${tail.col}`);
+                tailCell.classList.remove('snake');
+              }
+          
+              // Check for collision with walls or itself
+              if (
+                head.row < 0 || head.row >= gridSize ||
+                head.col < 0 || head.col >= gridSize ||
+                headCell.classList.contains('snake')
+              ) {
+                endGame();
+              }
+          
+              drawGameBoard();
+            };
+          
+            const generateFood = () => {
+              let newFood;
+              do {
+                newFood = {
+                  row: Math.floor(Math.random() * gridSize),
+                  col: Math.floor(Math.random() * gridSize)
+                };
+              } while (snake.some(segment => segment.row === newFood.row && segment.col === newFood.col));
+          
+              food = newFood;
+            };
+          
+            const startGame = () => {
+              playerName = playerNameInput.value.trim();
+              if (playerName) {
+                initializeGame();
+                isGameOver = false;
+                score = 0;
+                snake = [{ row: 10, col: 10 }];
                 direction = 'right';
-            }
-        }
-
-        let direction = 'right';
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowUp' && direction !== 'down') direction = 'up';
-            else if (event.key === 'ArrowDown' && direction !== 'up') direction = 'down';
-            else if (event.key === 'ArrowLeft' && direction !== 'right') direction = 'left';
-            else if (event.key === 'ArrowRight' && direction !== 'left') direction = 'right';
-        });
-
-        setInterval(() => {
-            move();
-            draw();
-        }, snakeSpeed);
-    </script>
+                playerNameInput.disabled = true;
+                setInterval(() => {
+                  if (!isGameOver) {
+                    moveSnake();
+                  }
+                }, 200);
+              } else {
+                alert('Przed rozpoczęciem gry wpisz swój Nik.');
+              }
+            };
+          
+            const endGame = () => {
+              alert(`Game Over! Twój nik: ${score}`);
+              playerNameInput.disabled = false;
+              isGameOver = true;
+          
+              // Add player to the ranking
+              addToRanking(playerName, score);
+            };
+          
+            const addToRanking = (name, score) => {
+              const listItem = document.createElement('li');
+              listItem.textContent = `${name}: ${score} points`;
+              rankingList.appendChild(listItem);
+            };
+          
+            // Initialize the game
+            initializeGame();
+          </script>
 	</div>
 </body>
 </html>
