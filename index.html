@@ -33,14 +33,12 @@
         }
 
         #gora {
-            width: 100%;
             height: 40px;
             background-color: blue;
             color: white;
             line-height: 40px;
             border-radius: 5px;
             margin-bottom: 20px;
-            display: flex;
             justify-content: flex-end;
             padding: 0 20px;
         }
@@ -73,7 +71,7 @@
         }
 
         .q {
-            word-spacing: 50px;
+            word-spacing: 70px;
         }
 
         a {
@@ -89,6 +87,17 @@
             display: block;
             margin: 20px auto;
             border-radius: 5px;
+        }
+        #left-side {
+            flex: 1;
+            background-color: #f0f0f0; /* Kolor tła lewej części */
+            padding: 20px;
+        }
+
+        #right-side {
+            flex: 1;
+            background-color: #e6e6e6; /* Kolor tła prawej części */
+            padding: 20px;
         }
     </style>
 </head>
@@ -108,10 +117,14 @@
             <b>BITWINE</b>
         </div>
         <h1>HELLO WORLD IN MY COMPANY</h1>
-        <center>
-            <img src="kot.gif">
-        </center>
-        <img src="BITWINE2.png" class="V">
+        <div id="left-side">
+            <h1>Strona lewa</h1>
+            <p>Zawartość lewej części strony.</p>
+        </div>
+        <div id="right-side">
+            <h1>Strona prawa</h1>
+            <p>Zawartość prawej części strony.</p>
+        </div>
     </div>
 </body>
 </html>
