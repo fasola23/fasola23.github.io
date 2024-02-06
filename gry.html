@@ -67,7 +67,6 @@
   height: 400px;
   border: 2px solid #000;
   overflow: hidden;
-  background-color: #000;
 }
 
 .cell {
@@ -76,7 +75,7 @@
 }
 
 .snake {
-  background-color: #333;
+  background-color: #05961d;
 }
 
 .food {
@@ -122,12 +121,10 @@
     </div>
   </div>
   <h1>Snake game</h1>
-  <div id="game-board"></div>
+ 
+    <div id="game-board"></div>
   <div id="score">Score: <span id="score-value">0</span></div>
-  <div id="ranking-container">
-    <h2>Ranking</h2>
-    <ol id="ranking-list"></ol>
-  </div>
+
   <script>
     const gridSize = 20;
     const cellSize = 20;
@@ -138,17 +135,14 @@
     let food = {};
     let isGameOver = false;
     let score = 0;
-    let playerName = '';
 
     const gameBoard = document.getElementById('game-board');
     const scoreValue = document.getElementById('score-value');
-    const rankingList = document.getElementById('ranking-list');
 
     const initializeGame = () => {
       createGameBoard();
       generateFood();
       drawGameBoard();
-      restorePlayerData();
     };
 
     const createGameBoard = () => {
@@ -248,7 +242,6 @@
       setInterval(() => {
         if (!isGameOver) {
           moveSnake();
-          savePlayerData();
         }
       }, 200);
     };
@@ -256,28 +249,6 @@
     const endGame = () => {
       alert(`Game Over! Your score: ${score}`);
       isGameOver = true;
-      addToRanking(playerName, score);
-      savePlayerData();
-    };
-
-    const addToRanking = (name, score) => {
-      const listItem = document.createElement('li');
-      listItem.textContent = `${name}: ${score} points`;
-      rankingList.appendChild(listItem);
-    };
-
-    const savePlayerData = () => {
-      localStorage.setItem('snakePlayerName', playerName);
-      localStorage.setItem('snakeScore', score.toString());
-    };
-
-    const restorePlayerData = () => {
-      const storedName = localStorage.getItem('snakePlayerName');
-      const storedScore = localStorage.getItem('snakeScore');
-
-      if (storedName && storedScore) {
-        playerName = storedName;
-      }
     };
 
     // Initialize the game
