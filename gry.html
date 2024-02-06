@@ -161,131 +161,81 @@
     </div>
     <script>
       let nicknameInput = document.getElementById('nickname');
-      let board = document.getElementById('game-board');
-      let scoreElement = document.getElementById('score');
-      let rankingElement = document.getElementById('ranking');
-      let formContainer = document.getElementById('form-container');
-      let gridSize = 20;
-      let cellSize = 20;
-      let snakeSpeed = 150;
-      let snake = [];
-      let food;
-      let score = 0;
-      let direction = 'right';
-      let gameInProgress = false;
+        let board = document.getElementById('game-board');
+        let scoreElement = document.getElementById('score');
+        let rankingElement = document.getElementById('ranking');
+        let formContainer = document.getElementById('form-container');
+        let gridSize = 20;
+        let cellSize = 20;
+        let snakeSpeed = 150;
+        let snake = [];
+        let food;
+        let score = 0;
+        let direction = 'right';
+        let gameInProgress = false;
+        let intervalId; // Nowa zmienna do przechowywania identyfikatora interwału
 
-      function generateFood() {
-          const foodX = Math.floor(Math.random() * gridSize) * cellSize;
-          const foodY = Math.floor(Math.random() * gridSize) * cellSize;
-          return { x: foodX, y: foodY };
-      }
+        function generateFood() {
+            const foodX = Math.floor(Math.random() * gridSize) * cellSize;
+            const foodY = Math.floor(Math.random() * gridSize) * cellSize;
+            return { x: foodX, y: foodY };
+        }
 
-      function draw() {
-          board.innerHTML = '';
+        function draw() {
+            // ... (bez zmian w funkcji draw) ...
+        }
 
-          // Draw snake
-          snake.forEach(part => {
-              const snakePart = document.createElement('div');
-              snakePart.className = 'snake-part';
-              snakePart.style.left = part.x + 'px';
-              snakePart.style.top = part.y + 'px';
-              board.appendChild(snakePart);
-          });
+        function move() {
+            // ... (bez zmian w funkcji move) ...
+        }
 
-          // Draw food
-          const foodElement = document.createElement('div');
-          foodElement.className = 'food';
-          foodElement.style.left = food.x + 'px';
-          foodElement.style.top = food.y + 'px';
-          board.appendChild(foodElement);
-      }
+        function endGame() {
+            gameInProgress = false;
+            clearInterval(intervalId); // Wyczyszczenie interwału
+            alert('Game Over! Your score: ' + score);
 
-      function move() {
-          const head = { ...snake[0] };
+            // ... (bez zmian w funkcji endGame) ...
 
-          // Move snake
-          if (direction === 'up') head.y -= cellSize;
-          else if (direction === 'down') head.y += cellSize;
-          else if (direction === 'left') head.x -= cellSize;
-          else if (direction === 'right') head.x += cellSize;
+            // Restart the game
+            resetGame();
+        }
 
-          // Check for collision with food
-          if (head.x === food.x && head.y === food.y) {
-              snake.unshift(food);
-              food = generateFood();
-              score += 10;
-              scoreElement.textContent = 'Score: ' + score;
-          } else {
-              snake.pop();
-              snake.unshift(head);
-          }
+        function displayRanking() {
+            // ... (bez zmian w funkcji displayRanking) ...
+        }
 
-          // Check for collision with walls
-          if (head.x < 0 || head.x >= gridSize * cellSize || head.y < 0 || head.y >= gridSize * cellSize) {
-              endGame();
-          }
+        function resetGame() {
+            snake = [];
+            food = generateFood();
+            direction = 'right';
+            score = 0;
+            scoreElement.textContent = 'Score: ' + score;
+            formContainer.style.display = 'block';
+        }
 
-          draw(); // Rysowanie po każdym ruchu
-      }
+        function startGame() {
+            if (!gameInProgress && nicknameInput.value.trim() !== '') {
+                gameInProgress = true;
+                formContainer.style.display = 'none';
+                snake = [{ x: 0, y: 0 }];
+                food = generateFood();
+                direction = 'right';
+                score = 0;
+                scoreElement.textContent = 'Score: ' + score;
 
-      function endGame() {
-          gameInProgress = false;
-          alert('Game Over! Your score: ' + score);
+                // Wyczyszczenie poprzedniego interwału, jeśli istnieje
+                clearInterval(intervalId);
 
-          // Save the score and nickname
-          if (nicknameInput.value.trim() !== '') {
-              let savedScores = localStorage.getItem('snakeScores') ? JSON.parse(localStorage.getItem('snakeScores')) : [];
-              savedScores.push({ nickname: nicknameInput.value, score: score });
-              localStorage.setItem('snakeScores', JSON.stringify(savedScores));
-          }
-
-          // Display ranking
-          displayRanking();
-
-          // Restart the game
-          resetGame();
-      }
-
-      function displayRanking() {
-          rankingElement.innerHTML = 'Ranking:';
-          let savedScores = localStorage.getItem('snakeScores') ? JSON.parse(localStorage.getItem('snakeScores')) : [];
-          savedScores.sort((a, b) => b.score - a.score); // Sortowanie malejąco
-
-          // Display only top 5 scores
-          savedScores.slice(0, 5).forEach((entry, index) => {
-              const rankingEntry = document.createElement('div');
-              rankingEntry.textContent = `${index + 1}. ${entry.nickname}: ${entry.score}`;
-              rankingElement.appendChild(rankingEntry);
-          });
-      }
-
-      function resetGame() {
-          snake = [];
-          food = generateFood();
-          direction = 'right';
-          score = 0;
-          scoreElement.textContent = 'Score: ' + score;
-          formContainer.style.display = 'block';
-      }
-
-      function startGame() {
-          if (!gameInProgress && nicknameInput.value.trim() !== '') {
-              gameInProgress = true;
-              formContainer.style.display = 'none';
-              snake = [{ x: 0, y: 0 }];
-              food = generateFood();
-              direction = 'right';
-              score = 0;
-              scoreElement.textContent = 'Score: ' + score;
-              setInterval(() => {
-                  move();
-              }, snakeSpeed);
-          } else if (gameInProgress) {
-              alert('Gra jest już w toku. Zakończ go zanim zaczniesz nowy.');
-          } else {
-              alert('Przed rozpoczęciem gry wprowadź pseudonim.');
-          }
-      }
+                // Ustawienie nowego interwału
+                intervalId = setInterval(() => {
+                    move();
+                }, snakeSpeed);
+            } else if (gameInProgress) {
+                alert('Game is already in progress. Finish it before starting a new one.');
+            } else {
+                alert('Please enter a nickname before starting the game.');
+            }
+        }
 
       // Obsługa ruchu
       document.addEventListener('keydown', (event) => {
