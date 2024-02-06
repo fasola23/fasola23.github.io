@@ -108,14 +108,12 @@ h1 {
 		<h1>Snake Game</h1>
     <div id="game-board"></div>
     <div id="ranking-container">
-        <h1>Snake Game Ranking</h1>
         <ol id="ranking-list"></ol>
       </div>
       
       <div>
-        <h2>Snake Game</h2>
-        <label for="playerName">Enter your name:</label>
-        <input type="text" id="playerName" placeholder="Your Name">
+        <label for="playerName">Twój nik:</label>
+        <input type="text" id="playerName" placeholder="Wpisz swój nik">
         <button onclick="startGame()">Start Game</button>
       </div>
       
@@ -124,7 +122,6 @@ h1 {
     { name: 'Player1', score: 10 },
     { name: 'Player2', score: 8 },
     { name: 'Player3', score: 5 },
-    // Add more entries as needed
   ];
 
   const rankingList = document.getElementById('ranking-list');
