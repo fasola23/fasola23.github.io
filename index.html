@@ -5,25 +5,36 @@
     <link rel="icon" href="ok.png" type="image/x-icon">
     <meta charset="UTF-8">
     <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
         #strona {
             width: 950px;
             margin: 0 auto;
-        }
-
-        body {
-            background-image: URL(BITWINE1.png);
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
         }
 
         h1 {
-            color: yellow;
+            color: #3498db;
             text-align: center;
         }
 
         #gora {
             width: 950px;
-            height: 20px;
-            background-color: blue;
+            height: 40px;
+            background-color: #3498db;
             color: white;
+            line-height: 40px;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
 
         #gora a {
@@ -35,34 +46,48 @@
 
         #gorac {
             width: 950px;
-            height: 20px;
-            background-color: blue;
+            height: 40px;
+            background-color: #3498db;
             color: white;
             text-align: center;
+            line-height: 40px;
+            border-radius: 5px;
         }
 
         .o, .i, .k, .n, .q {
-            font-size: 10px;
+            font-size: 12px;
+            color: #555;
         }
 
         .q {
-            word-spacing: 50px;
-            font-size: 10px;
+            word-spacing: 20px;
         }
 
         a {
-            color: white;
+            color: #3498db;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #555;
         }
 
         img.V {
             width: 300px;
             height: 350px;
             background-position: right;
+            display: block;
+            margin: 0 auto;
+            border-radius: 5px;
+            margin-top: 20px;
         }
 
         b {
             text-align: center;
+            color: #555;
+            margin-top: 10px;
+            display: block;
         }
 
         #kalendarz {
@@ -73,6 +98,11 @@
         #inneLinki {
             text-align: center;
             margin-top: 20px;
+        }
+
+        #inneLinki span {
+            margin: 0 10px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -107,3 +137,4 @@
     </div>
 </body>
 </html>
+
