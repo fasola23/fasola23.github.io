@@ -72,6 +72,7 @@
     .cell {
       width: 20px;
       height: 20px;
+      border: 1px solid #000;
     }
 
     .snake {
@@ -86,20 +87,6 @@
       text-align: center;
       margin-top: 10px;
       font-size: 18px;
-    }
-
-    #ranking-container {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    #ranking-list {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    #ranking-list li {
-      margin-bottom: 5px;
     }
   </style>
 </head>
@@ -137,13 +124,6 @@
 
     const gameBoard = document.getElementById('game-board');
     const scoreValue = document.getElementById('score-value');
-
-    const initializeGame = () => {
-      createGameBoard();
-      generateFood();
-      drawGameBoard();
-      document.addEventListener('keydown', handleKeyPress);
-    };
 
     const createGameBoard = () => {
       for (let i = 0; i < boardCells; i++) {
@@ -233,12 +213,10 @@
     };
 
     const startGame = () => {
-      initializeGame();
-      isGameOver = false;
-      score = 0;
-      snake = [{ row: 5, col: 5 }];
-      direction = 'right';
-      scoreValue.textContent = score;
+      createGameBoard();
+      generateFood();
+      drawGameBoard();
+      document.addEventListener('keydown', handleKeyPress);
       setInterval(() => {
         if (!isGameOver) {
           moveSnake();
@@ -267,8 +245,6 @@
           break;
       }
     };
-
-    // Initialize the game
     startGame();
   </script>
 </body>
