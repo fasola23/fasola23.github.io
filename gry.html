@@ -66,23 +66,23 @@
         }
 
         #game-board {
-            width: 300px;
-            height: 350px;
+            width: 400px;
+            height: 400px;
             border: 1px solid #000;
             position: relative;
             display: inline-block;
         }
 
         .snake-part {
-            width: 15px;
-            height: 15px;
+            width: 20px;
+            height: 20px;
             background-color: green;
             position: absolute;
         }
 
         .food {
-            width: 15px;
-            height: 15px;
+            width: 20px;
+            height: 20px;
             background-color: red;
             position: absolute;
         }
@@ -166,8 +166,8 @@
       let scoreElement = document.getElementById('score');
       let rankingElement = document.getElementById('ranking');
       let formContainer = document.getElementById('form-container');
-      let gridSize = 15; /* Dostosowany rozmiar siatki */
-      let cellSize = 15; /* Dostosowany rozmiar komórki */
+      let gridSize = 20;
+      let cellSize = 20;
       let snakeSpeed = 150;
       let snake = [];
       let food;
@@ -282,9 +282,9 @@
                   move();
               }, snakeSpeed);
           } else if (gameInProgress) {
-              alert('Game is already in progress. Finish it before starting a new one.');
+              alert('Gra jest już w toku. Zakończ go zanim zaczniesz nowy.');
           } else {
-              alert('Please enter a nickname before starting the game.');
+              alert('Przed rozpoczęciem gry wprowadź pseudonim.');
           }
       }
 
