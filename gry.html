@@ -182,26 +182,79 @@
         }
 
         function draw() {
-            // ... (bez zmian w funkcji draw) ...
+          board.innerHTML = '';
+    snake.forEach(part => {
+    const snakePart = document.createElement('div');
+    snakePart.className = 'snake-part';
+    snakePart.style.left = part.x + 'px';
+    snakePart.style.top = part.y + 'px';
+    board.appendChild(snakePart);
+  });
+     // Draw food
+     const foodElement = document.createElement('div');
+            foodElement.className = 'food';
+            foodElement.style.left = food.x + 'px';
+            foodElement.style.top = food.y + 'px';
+            board.appendChild(foodElement);
         }
 
         function move() {
-            // ... (bez zmian w funkcji move) ...
+          const head = { ...snake[0] };
+
+// Move snake
+if (direction === 'up') head.y -= cellSize;
+else if (direction === 'down') head.y += cellSize;
+else if (direction === 'left') head.x -= cellSize;
+else if (direction === 'right') head.x += cellSize;
+
+// Check for collision with food
+if (head.x === food.x && head.y === food.y) {
+    snake.unshift(food);
+    food = generateFood();
+    score += 10;
+    scoreElement.textContent = 'Score: ' + score;
+} else {
+    snake.pop();
+    snake.unshift(head);
+}
+
+// Check for collision with walls
+if (head.x < 0 || head.x >= gridSize * cellSize || head.y < 0 || head.y >= gridSize * cellSize) {
+    endGame();
+}
+
+draw(); // Rysowanie po każdym ruchu
         }
 
         function endGame() {
             gameInProgress = false;
             clearInterval(intervalId); // Wyczyszczenie interwału
             alert('Game Over! Your score: ' + score);
+            if (nicknameInput.value.trim() !== '') {
+                let savedScores = localStorage.getItem('snakeScores') ? JSON.parse(localStorage.getItem('snakeScores')) : [];
+                savedScores.push({ nickname: nicknameInput.value, score: score });
+                localStorage.setItem('snakeScores', JSON.stringify(savedScores));
+            }
 
-            // ... (bez zmian w funkcji endGame) ...
+            // Display ranking
+            displayRanking();
+
 
             // Restart the game
             resetGame();
         }
 
         function displayRanking() {
-            // ... (bez zmian w funkcji displayRanking) ...
+          rankingElement.innerHTML = 'Ranking:';
+            let savedScores = localStorage.getItem('snakeScores') ? JSON.parse(localStorage.getItem('snakeScores')) : [];
+            savedScores.sort((a, b) => b.score - a.score); // Sortowanie malejąco
+
+            // Display only top 5 scores
+            savedScores.slice(0, 5).forEach((entry, index) => {
+                const rankingEntry = document.createElement('div');
+                rankingEntry.textContent = `${index + 1}. ${entry.nickname}: ${entry.score}`;
+                rankingElement.appendChild(rankingEntry);
+            });
         }
 
         function resetGame() {
