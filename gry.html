@@ -94,7 +94,9 @@ h1 {
 				<img src="BITWINE2.png" width="10px" height="19px">
 		</div>
 		<h1>Snake Game</h1>
-    <div id="game-board"></div>
+    <div id="game-board">
+        <ol id="ranking-list"></ol>
+    </div>
     <script>
         const board = document.getElementById('game-board');
         const gridSize = 15;
@@ -122,7 +124,7 @@ h1 {
                 board.appendChild(snakePart);
             });
 
-            // Draw food
+           
             const foodElement = document.createElement('div');
             foodElement.className = 'food';
             foodElement.style.left = food.x + 'px';
@@ -133,13 +135,13 @@ h1 {
         function move() {
             const head = { ...snake[0] };
 
-            // Move snake
+            
             if (direction === 'up') head.y -= cellSize;
             else if (direction === 'down') head.y += cellSize;
             else if (direction === 'left') head.x -= cellSize;
             else if (direction === 'right') head.x += cellSize;
 
-            // Check for collision with food
+            
             if (head.x === food.x && head.y === food.y) {
                 snake.unshift(food);
                 food = generateFood();
@@ -148,7 +150,7 @@ h1 {
                 snake.unshift(head);
             }
 
-            // Check for collision with walls
+           
             if (head.x < 0 || head.x >= gridSize * cellSize || head.y < 0 || head.y >= gridSize * cellSize) {
                 alert('Koniec gry!');
 
@@ -172,6 +174,33 @@ h1 {
             move();
             draw();
         }, snakeSpeed);
+         
+  const rankingData = [
+    { name: 'Player1', score: 10 },
+    { name: 'Player2', score: 8 },
+    { name: 'Player3', score: 5 },
+    
+  ];
+
+  const rankingList = document.getElementById('ranking-list');
+
+  
+  const updateRanking = () => {
+    // Clear the existing list
+    rankingList.innerHTML = '';
+
+    const sortedRanking = rankingData.sort((a, b) => b.score - a.score);
+
+    
+    sortedRanking.forEach(entry => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${entry.name}: ${entry.score} points`;
+      rankingList.appendChild(listItem);
+    });
+  };
+
+  
+  updateRanking();
     </script>
 	</div>
 </body>
