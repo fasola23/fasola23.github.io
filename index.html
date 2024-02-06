@@ -104,6 +104,49 @@
             margin: 0 10px;
             display: inline-block;
         }
+		#kalendarz {
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        #kalendarz h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #3498db;
+        }
+
+        #dni {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        #dni div {
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        #dni div:first-child {
+            color: #e74c3c;
+        }
+
+        #dni div:last-child {
+            color: #2ecc71;
+        }
+
+        #dni div:hover {
+            background-color: #f9f9f9;
+        }
+
+        #poprzedni-miesiac, #nastepny-miesiac {
+            cursor: pointer;
+            color: #3498db;
+        }
     </style>
 </head>
 <body>
@@ -137,8 +180,73 @@
     <!-- Część 3: Kalendarz -->
     <div id="strona" style="background-color: #f39c12;">
         <div id="kalendarz">
-            <!-- Tutaj umieść kod z funkcjonalnym kalendarzem -->
+            <h2>Kalendarz</h2>
+        <div id="dni"></div>
+        <div>
+            <span id="poprzedni-miesiac">&#9664;</span>
+            <span id="aktualny-miesiac">Miesiąc</span>
+            <span id="nastepny-miesiac">&#9654;</span>
+        </div>
         </div>
     </div>
+	<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dniElement = document.getElementById('dni');
+            const poprzedniMiesiac = document.getElementById('poprzedni-miesiac');
+            const nastepnyMiesiac = document.getElementById('nastepny-miesiac');
+            const aktualnyMiesiac = document.getElementById('aktualny-miesiac');
+
+            const dzis = new Date();
+            let rok = dzis.getFullYear();
+            let miesiac = dzis.getMonth();
+
+            function wyswietlKalendarz(miesiac, rok) {
+                dniElement.innerHTML = '';
+
+                const dniWmiesiacu = new Date(rok, miesiac + 1, 0).getDate();
+                const pierwszyDzien = new Date(rok, miesiac, 1).getDay();
+
+                const dniPoprzedniegoMiesiaca = new Date(rok, miesiac, 0).getDate();
+                for (let i = pierwszyDzien; i > 0; i--) {
+                    const dzien = dniPoprzedniegoMiesiaca - i + 1;
+                    const div = document.createElement('div');
+                    div.innerText = dzien;
+                    dniElement.appendChild(div);
+                }
+
+                for (let i = 1; i <= dniWmiesiacu; i++) {
+                    const div = document.createElement('div');
+                    div.innerText = i;
+                    dniElement.appendChild(div);
+                }
+            }
+
+            wyswietlKalendarz(miesiac, rok);
+
+            aktualnyMiesiac.innerText = `${miesiac + 1}/${rok}`;
+
+            poprzedniMiesiac.addEventListener('click', function() {
+                if (miesiac === 0) {
+                    rok--;
+                    miesiac = 11;
+                } else {
+                    miesiac--;
+                }
+                wyswietlKalendarz(miesiac, rok);
+                aktualnyMiesiac.innerText = `${miesiac + 1}/${rok}`;
+            });
+
+            nastepnyMiesiac.addEventListener('click', function() {
+                if (miesiac === 11) {
+                    rok++;
+                    miesiac = 0;
+                } else {
+                    miesiac++;
+                }
+                wyswietlKalendarz(miesiac, rok);
+                aktualnyMiesiac.innerText = `${miesiac + 1}/${rok}`;
+            });
+        });
+    </script>
 </body>
 </html
