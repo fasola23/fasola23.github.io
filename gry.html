@@ -75,6 +75,18 @@ h1 {
             background-color: red;
             position: absolute;
  }
+#ranking-container {
+      text-align: right;
+      margin-right: 20px;
+    }
+#ranking-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+#ranking-list li {
+      margin-bottom: 10px;
+    }
 </style>
 </head>
 <body>
@@ -94,9 +106,10 @@ h1 {
 				<img src="BITWINE2.png" width="10px" height="19px">
 		</div>
 		<h1>Snake Game</h1>
-    <div id="game-board">
+    <div id="game-board"></div>
+    <div id="ranking-container">
         <ol id="ranking-list"></ol>
-    </div>
+      </div
     <script>
         const board = document.getElementById('game-board');
         const gridSize = 15;
