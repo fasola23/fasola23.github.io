@@ -116,183 +116,183 @@
       <b>BITWINE</b>
       <img src="BITWINE2.png" width="10px" height="19px">
     </div>
-</div>
-    <div>
-        <h1>Snake Game</h1>
-        <label for="playerName">Enter your name:</label>
-        <input type="text" id="playerName" placeholder="Your Name">
-        <button onclick="startGame()">Start Game</button>
-      </div>
-      
-      <div id="game-board"></div>
-      
-      <div id="ranking-container">
-        <h2>Ranking</h2>
-        <ol id="ranking-list"></ol>
-      </div>
-      
-      <script>
-        const gridSize = 20;
-        const cellSize = 20;
-        const boardSize = 400;
-        const boardCells = boardSize / cellSize;
-        let snake = [{ row: 10, col: 10 }];
-        let direction = 'right';
-        let food = {};
-        let isGameOver = false;
-        let score = 0;
-        let playerName = '';
-      
-        const gameBoard = document.getElementById('game-board');
-        const rankingList = document.getElementById('ranking-list');
-        const playerNameInput = document.getElementById('playerName');
-      
-        const initializeGame = () => {
-          createGameBoard();
-          generateFood();
-          drawGameBoard();
-          restorePlayerData();
-        };
-      
-        const createGameBoard = () => {
-          for (let i = 0; i < boardCells; i++) {
-            for (let j = 0; j < boardCells; j++) {
-              const cell = document.createElement('div');
-              cell.classList.add('cell');
-              cell.id = `${i}-${j}`;
-              gameBoard.appendChild(cell);
-            }
-          }
-        };
-      
-        const drawGameBoard = () => {
-          const cells = document.querySelectorAll('.cell');
-          cells.forEach(cell => {
-            cell.classList.remove('snake', 'food');
-          });
-      
-          snake.forEach(segment => {
-            const snakeCell = document.getElementById(`${segment.row}-${segment.col}`);
-            if (snakeCell) {
-              snakeCell.classList.add('snake');
-            }
-          });
-      
-          const foodCell = document.getElementById(`${food.row}-${food.col}`);
-          if (foodCell) {
-            foodCell.classList.add('food');
-          }
-        };
-      
-        const moveSnake = () => {
-          const head = { ...snake[0] };
-      
-          switch (direction) {
-            case 'up':
-              head.row--;
-              break;
-            case 'down':
-              head.row++;
-              break;
-            case 'left':
-              head.col--;
-              break;
-            case 'right':
-              head.col++;
-              break;
-          }
-      
-          snake.unshift(head);
-      
-          const headCell = document.getElementById(`${head.row}-${head.col}`);
-      
-          if (head.row === food.row && head.col === food.col) {
-            score += 5;
-            generateFood();
-          } else {
-            const tail = snake.pop();
-            const tailCell = document.getElementById(`${tail.row}-${tail.col}`);
-            if (tailCell) {
-              tailCell.classList.remove('snake');
-            }
-          }
-      
-          if (
-            head.row < 0 || head.row >= boardCells ||
-            head.col < 0 || head.col >= boardCells ||
-            snake.some(segment => segment.row === head.row && segment.col === head.col)
-          ) {
-            endGame();
-          } else {
-            drawGameBoard();
-          }
-        };
-      
-        const generateFood = () => {
-          let newFood;
-          do {
-            newFood = {
-              row: Math.floor(Math.random() * boardCells),
-              col: Math.floor(Math.random() * boardCells)
-            };
-          } while (snake.some(segment => segment.row === newFood.row && segment.col === newFood.col));
-      
-          food = newFood;
-        };
-      
-        const startGame = () => {
-          playerName = playerNameInput.value.trim();
-          if (playerName) {
-            initializeGame();
-            isGameOver = false;
-            score = 0;
-            snake = [{ row: 10, col: 10 }];
-            direction = 'right';
-            playerNameInput.disabled = true;
-            setInterval(() => {
-              if (!isGameOver) {
-                moveSnake();
-                savePlayerData();
-              }
-            }, 200);
-          } else {
-            alert('Please enter your name before starting the game.');
-          }
-        };
-      
-        const endGame = () => {
-          alert(`Game Over! Your score: ${score}`);
-          playerNameInput.disabled = false;
-          isGameOver = true;
-      
-          addToRanking(playerName, score);
-          savePlayerData();
-        };
-      
-        const addToRanking = (name, score) => {
-          const listItem = document.createElement('li');
-          listItem.textContent = `${name}: ${score} points`;
-          rankingList.appendChild(listItem);
-        };
-      
-        const savePlayerData = () => {
-          localStorage.setItem('snakePlayerName', playerName);
-          localStorage.setItem('snakeScore', score.toString());
-        };
-      
-        const restorePlayerData = () => {
-          const storedName = localStorage.getItem('snakePlayerName');
-          const storedScore = localStorage.getItem('snakeScore');
-      
-          if (storedName && storedScore) {
-            playerNameInput.value = storedName;
-            playerName = storedName;
-            score = parseInt(storedScore, 10);
-          }
-        };
-      
-        initializeGame();
-      </script>
   </div>
+
+  <div>
+    <h1>Snake Game</h1>
+    <label for="playerName">Enter your name:</label>
+    <input type="text" id="playerName" placeholder="Your Name">
+    <button onclick="startGame();">Start Game</button>
+  </div>
+  
+  <div id="game-board"></div>
+  
+  <div id="ranking-container">
+    <h2>Ranking</h2>
+    <ol id="ranking-list"></ol>
+  </div>
+  
+  <script>
+    const gridSize = 20;
+    const cellSize = 20;
+    const boardSize = 400;
+    const boardCells = boardSize / cellSize;
+    let snake = [{ row: 10, col: 10 }];
+    let direction = 'right';
+    let food = {};
+    let isGameOver = false;
+    let score = 0;
+    let playerName = '';
+
+    const gameBoard = document.getElementById('game-board');
+    const rankingList = document.getElementById('ranking-list');
+    const playerNameInput = document.getElementById('playerName');
+
+    const initializeGame = () => {
+      createGameBoard();
+      generateFood();
+      drawGameBoard();
+      restorePlayerData();
+    };
+
+    const createGameBoard = () => {
+      for (let i = 0; i < boardCells; i++) {
+        for (let j = 0; j < boardCells; j++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          cell.id = `${i}-${j}`;
+          gameBoard.appendChild(cell);
+        }
+      }
+    };
+
+    const drawGameBoard = () => {
+      const cells = document.querySelectorAll('.cell');
+      cells.forEach(cell => {
+        cell.classList.remove('snake', 'food');
+      });
+
+      snake.forEach(segment => {
+        const snakeCell = document.getElementById(`${segment.row}-${segment.col}`);
+        if (snakeCell) {
+          snakeCell.classList.add('snake');
+        }
+      });
+
+      const foodCell = document.getElementById(`${food.row}-${food.col}`);
+      if (foodCell) {
+        foodCell.classList.add('food');
+      }
+    };
+
+    const moveSnake = () => {
+      const head = { ...snake[0] };
+
+      switch (direction) {
+        case 'up':
+          head.row--;
+          break;
+        case 'down':
+          head.row++;
+          break;
+        case 'left':
+          head.col--;
+          break;
+        case 'right':
+          head.col++;
+          break;
+      }
+
+      snake.unshift(head);
+
+      const headCell = document.getElementById(`${head.row}-${head.col}`);
+
+      if (head.row === food.row && head.col === food.col) {
+        score += 5;
+        generateFood();
+      } else {
+        const tail = snake.pop();
+        const tailCell = document.getElementById(`${tail.row}-${tail.col}`);
+        if (tailCell) {
+          tailCell.classList.remove('snake');
+        }
+      }
+
+      if (
+        head.row < 0 || head.row >= boardCells ||
+        head.col < 0 || head.col >= boardCells ||
+        snake.some(segment => segment.row === head.row && segment.col === head.col)
+      ) {
+        endGame();
+      } else {
+        drawGameBoard();
+      }
+    };
+
+    const generateFood = () => {
+      let newFood;
+      do {
+        newFood = {
+          row: Math.floor(Math.random() * boardCells),
+          col: Math.floor(Math.random() * boardCells)
+        };
+      } while (snake.some(segment => segment.row === newFood.row && segment.col === newFood.col));
+
+      food = newFood;
+    };
+
+    const startGame = () => {
+      playerName = playerNameInput.value.trim();
+      if (playerName) {
+        initializeGame();
+        isGameOver = false;
+        score = 0;
+        snake = [{ row: 10, col: 10 }];
+        direction = 'right';
+        playerNameInput.disabled = true;
+        setInterval(() => {
+          if (!isGameOver) {
+            moveSnake();
+            savePlayerData();
+          }
+        }, 200);
+      } else {
+        alert('Please enter your name before starting the game.');
+      }
+    };
+
+    const endGame = () => {
+      alert(`Game Over! Your score: ${score}`);
+      playerNameInput.disabled = false;
+      isGameOver = true;
+
+      addToRanking(playerName, score);
+      savePlayerData();
+    };
+
+    const addToRanking = (name, score) => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${name}: ${score} points`;
+      rankingList.appendChild(listItem);
+    };
+
+    const savePlayerData = () => {
+      localStorage.setItem('snakePlayerName', playerName);
+      localStorage.setItem('snakeScore', score.toString());
+    };
+
+    const restorePlayerData = () => {
+      const storedName = localStorage.getItem('snakePlayerName');
+      const storedScore = localStorage.getItem('snakeScore');
+
+      if (storedName && storedScore) {
+        playerNameInput.value = storedName;
+        playerName = storedName;
+        score = parseInt(storedScore, 10);
+      }
+    };
+
+    initializeGame();
+  </script>
 </body>
 </html>
