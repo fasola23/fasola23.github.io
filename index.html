@@ -24,17 +24,19 @@
             margin-right: 10px;
         }
 
-        #srodkowaGornaCzesc, #srodkowaDolnaCzesc {
+        #srodkowaCzesc {
             width: 450px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #goraCzesc, #dolCzesc {
+            width: 100%;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             border-radius: 10px;
-            margin-right: 10px;
-        }
-
-        #srodkowaDolnaCzesc {
-            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         h1 {
@@ -111,7 +113,6 @@
             border-radius: 5px;
             padding: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
         }
 
         #kalendarz h2 {
@@ -171,44 +172,58 @@
         <center><img src="BITWINE2.png" class="V"></center>
     </div>
 
-    <!-- Środkowa Górna Część -->
-    <div id="srodkowaGornaCzesc">
-        <div id="gora">
-            <b>BITWINE</b>
-            <img src="BITWINE2.png" width="10px" height="19px">
-            <div>
-                <a href="przygody.html">MENU</a>
-                <a href="historia.html">Our-Story</a>
-                <a href="index.html">Powrót</a>
-                <a href="zdjecia.html">zdjecia</a>
-                <a href="kal.html">kalkulator</a>
-                <a href="gry.html">gra</a>
+    <!-- Środkowa Część -->
+    <div id="srodkowaCzesc">
+        <!-- Górna Część -->
+        <div id="goraCzesc">
+            <div id="gora">
+                <b>BITWINE</b>
+                <img src="BITWINE2.png" width="10px" height="19px">
+                <div>
+                    <a href="przygody.html">MENU</a>
+                    <a href="historia.html">Our-Story</a>
+                    <a href="index.html">Powrót</a>
+                    <a href="zdjecia.html">zdjecia</a>
+                    <a href="kal.html">kalkulator</a>
+                    <a href="gry.html">gra</a>
+                </div>
             </div>
+            <div id="gorac">
+                <h1>HELLO WORLD IN MY COMPANY</h1>
+            </div>
+            <center><img src="BITWINE2.png" class="V"></center>
         </div>
-        <div id="gorac">
-            <h1>HELLO WORLD IN MY COMPANY</h1>
+
+        <!-- Dolna Część -->
+        <div id="dolCzesc">
+            <div id="gora">
+                <b>BITWINE</b>
+                <img src="BITWINE2.png" width="10px" height="19px">
+                <div>
+                    <a href="przygody.html">MENU</a>
+                    <a href="historia.html">Our-Story</a>
+                    <a href="index.html">Powrót</a>
+                    <a href="zdjecia.html">zdjecia</a>
+                    <a href="kal.html">kalkulator</a>
+                    <a href="gry.html">gra</a>
+                </div>
+            </div>
+            <div id="gorac">
+                <h1>HELLO WORLD IN MY COMPANY</h1>
+            </div>
+            <center><img src="BITWINE2.png" class="V"></center>
         </div>
-        <center><img src="BITWINE2.png" class="V"></center>
     </div>
 
-    <!-- Środkowa Dolna Część -->
-    <div id="srodkowaDolnaCzesc">
-        <div id="gora">
-            <b>BITWINE</b>
-            <img src="BITWINE2.png" width="10px" height="19px">
-            <div>
-                <a href="przygody.html">MENU</a>
-                <a href="historia.html">Our-Story</a>
-                <a href="index.html">Powrót</a>
-                <a href="zdjecia.html">zdjecia</a>
-                <a href="kal.html">kalkulator</a>
-                <a href="gry.html">gra</a>
-            </div>
+    <!-- Kalendarz -->
+    <div id="kalendarz">
+        <h2>Kalendarz</h2>
+        <div id="dni"></div>
+        <div>
+            <span id="poprzedni-miesiac">&#9664;</span>
+            <span id="aktualny-miesiac">Miesiąc</span>
+            <span id="nastepny-miesiac">&#9654;</span>
         </div>
-        <div id="gorac">
-            <h1>HELLO WORLD IN MY COMPANY</h1>
-        </div>
-        <center><img src="BITWINE2.png" class="V"></center>
     </div>
 
     <script>
