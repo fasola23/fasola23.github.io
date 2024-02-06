@@ -20,34 +20,28 @@
         }
 
         #gora {
-            width: 475px;
+            width: 950px;
             height: 20px;
-            float: right;
             background-color: blue;
             color: white;
+        }
+
+        #gora a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 14px;
         }
 
         #gorac {
-            width: 475px;
+            width: 950px;
             height: 20px;
-            float: left;
             background-color: blue;
             color: white;
+            text-align: center;
         }
 
-        .o {
-            font-size: 10px;
-        }
-
-        .i {
-            font-size: 10px;
-        }
-
-        .k {
-            font-size: 10px;
-        }
-
-        .n {
+        .o, .i, .k, .n, .q {
             font-size: 10px;
         }
 
@@ -72,12 +66,12 @@
         }
 
         #kalendarz {
-            /* Dodaj tutaj style dla kalendarza */
+            float: right;
             margin-top: 20px;
         }
 
         #inneLinki {
-            /* Dodaj tutaj style dla linków do różnych stron */
+            text-align: center;
             margin-top: 20px;
         }
     </style>
@@ -85,14 +79,12 @@
 <body>
     <div id="strona">
         <div id="gora">
-            <span class="q">
-                <span class="i"><a href="przygody.html">MENU</a></span>
-                <span class="k"><a href="historia.html">Our-Story</a></span>
-                <span class="n"><a href="index.html">Powrót</a></span>
-                <span class="o"><a href="zdjecia.html">zdjecia</a></span>
-                <span class="y"><a href="kal.html">kalkulator</a></span>
-                <span class="l"><a href="gry.html">gra</a></span>
-            </span>
+            <a href="przygody.html">MENU</a>
+            <a href="historia.html">Our-Story</a>
+            <a href="index.html">Powrót</a>
+            <a href="zdjecia.html">zdjecia</a>
+            <a href="kal.html">kalkulator</a>
+            <a href="gry.html">gra</a>
         </div>
         <div id="gorac">
             <b>BITWINE</b>
@@ -101,16 +93,16 @@
         <h1>HELLO WORLD IN MY COMPANY</h1>
         <center><img src="BITWINE2.png" class="V"></center>
 
-        <!-- Część 2: Kalendarz -->
-        <div id="kalendarz">
-            <!-- Tutaj umieść kod z funkcjonalnym kalendarzem -->
-        </div>
-
-        <!-- Część 3: Różne Linki -->
+        <!-- Część 2: Linki -->
         <div id="inneLinki">
             <span class="i"><a href="inne1.html">Inne Link 1</a></span>
             <span class="k"><a href="inne2.html">Inne Link 2</a></span>
             <span class="n"><a href="inne3.html">Inne Link 3</a></span>
+        </div>
+
+        <!-- Część 3: Kalendarz -->
+        <div id="kalendarz">
+            <!-- Tutaj umieść kod z funkcjonalnym kalendarzem -->
         </div>
     </div>
 </body>
