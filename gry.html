@@ -108,8 +108,17 @@ h1 {
 		<h1>Snake Game</h1>
     <div id="game-board"></div>
     <div id="ranking-container">
+        <h1>Snake Game Ranking</h1>
         <ol id="ranking-list"></ol>
-    </div>
+      </div>
+      
+      <div>
+        <h2>Snake Game</h2>
+        <label for="playerName">Enter your name:</label>
+        <input type="text" id="playerName" placeholder="Your Name">
+        <button onclick="startGame()">Start Game</button>
+      </div>
+      
     <script>
         const board = document.getElementById('game-board');
         const gridSize = 15;
@@ -188,23 +197,20 @@ h1 {
             draw();
         }, snakeSpeed);
          
-  const rankingData = [
+        let rankingData = [
     { name: 'Player1', score: 10 },
     { name: 'Player2', score: 8 },
     { name: 'Player3', score: 5 },
-    
+    // Add more entries as needed
   ];
 
   const rankingList = document.getElementById('ranking-list');
+  const playerNameInput = document.getElementById('playerName');
 
-  
   const updateRanking = () => {
-    // Clear the existing list
     rankingList.innerHTML = '';
-
     const sortedRanking = rankingData.sort((a, b) => b.score - a.score);
 
-    
     sortedRanking.forEach(entry => {
       const listItem = document.createElement('li');
       listItem.textContent = `${entry.name}: ${entry.score} points`;
@@ -212,8 +218,25 @@ h1 {
     });
   };
 
-  
-  updateRanking();
+  const addToRanking = (name, score) => {
+    rankingData.push({ name, score });
+    updateRanking();
+  };
+
+  const startGame = () => {
+    const playerName = playerNameInput.value.trim();
+
+    if (playerName) {
+      // Start the game here
+      alert(`Game started for player: ${playerName}`);
+      // Example: Call addToRanking when the game ends with the player's name and score
+      // Replace this with your actual game over logic
+      const playerScore = 15; // Example score
+      addToRanking(playerName, playerScore);
+    } else {
+      alert('Please enter your name before starting the game.');
+    }
+  };
     </script>
 	</div>
 </body>
