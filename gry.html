@@ -160,20 +160,20 @@
 </div>
     </div>
     <script>
-      let nicknameInput = document.getElementById('nickname');
+         let nicknameInput = document.getElementById('nickname');
         let board = document.getElementById('game-board');
         let scoreElement = document.getElementById('score');
         let rankingElement = document.getElementById('ranking');
         let formContainer = document.getElementById('form-container');
-        let gridSize = 20;
-        let cellSize = 20;
+        let gridSize = 15;
+        let cellSize = 15;
         let snakeSpeed = 150;
         let snake = [];
         let food;
         let score = 0;
         let direction = 'right';
         let gameInProgress = false;
-        let intervalId; // Nowa zmienna do przechowywania identyfikatora interwału
+        let intervalId;
 
         function generateFood() {
             const foodX = Math.floor(Math.random() * gridSize) * cellSize;
@@ -183,54 +183,66 @@
 
         function draw() {
           board.innerHTML = '';
-    snake.forEach(part => {
+
+// Draw snake
+snake.forEach(part => {
     const snakePart = document.createElement('div');
     snakePart.className = 'snake-part';
     snakePart.style.left = part.x + 'px';
     snakePart.style.top = part.y + 'px';
     board.appendChild(snakePart);
-  });
-     // Draw food
-     const foodElement = document.createElement('div');
-            foodElement.className = 'food';
-            foodElement.style.left = food.x + 'px';
-            foodElement.style.top = food.y + 'px';
-            board.appendChild(foodElement);
+});
+
+// Draw food
+const foodElement = document.createElement('div');
+foodElement.className = 'food';
+foodElement.style.left = food.x + 'px';
+foodElement.style.top = food.y + 'px';
+board.appendChild(foodElement);
         }
 
         function move() {
-          const head = { ...snake[0] };
+            const head = { ...snake[0] };
 
-// Move snake
-if (direction === 'up') head.y -= cellSize;
-else if (direction === 'down') head.y += cellSize;
-else if (direction === 'left') head.x -= cellSize;
-else if (direction === 'right') head.x += cellSize;
+            // Move snake
+            if (direction === 'up') head.y -= cellSize;
+            else if (direction === 'down') head.y += cellSize;
+            else if (direction === 'left') head.x -= cellSize;
+            else if (direction === 'right') head.x += cellSize;
 
-// Check for collision with food
-if (head.x === food.x && head.y === food.y) {
-    snake.unshift(food);
-    food = generateFood();
-    score += 10;
-    scoreElement.textContent = 'Score: ' + score;
-} else {
-    snake.pop();
-    snake.unshift(head);
-}
+            // Check for collision with itself
+            for (let i = 1; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) {
+                    endGame();
+                    return;
+                }
+            }
 
-// Check for collision with walls
-if (head.x < 0 || head.x >= gridSize * cellSize || head.y < 0 || head.y >= gridSize * cellSize) {
-    endGame();
-}
+           // Check for collision with food
+           if (head.x === food.x && head.y === food.y) {
+                snake.unshift(food);
+                food = generateFood();
+                score += 10;
+                scoreElement.textContent = 'Score: ' + score;
+            } else {
+                snake.pop();
+                snake.unshift(head);
+            }
 
-draw(); // Rysowanie po każdym ruchu
+            // Check for collision with walls
+            if (head.x < 0 || head.x >= gridSize * cellSize || head.y < 0 || head.y >= gridSize * cellSize) {
+                endGame();
+            }
+
+            draw(); // Rysowanie po każdym ruchu
         }
 
         function endGame() {
             gameInProgress = false;
-            clearInterval(intervalId); // Wyczyszczenie interwału
-            alert('Game Over! Your score: ' + score);
-            if (nicknameInput.value.trim() !== '') {
+            clearInterval(intervalId);
+            alert('Game Over! Twój wynik: ' + score);
+ // Save the score and nickname
+              if (nicknameInput.value.trim() !== '') {
                 let savedScores = localStorage.getItem('snakeScores') ? JSON.parse(localStorage.getItem('snakeScores')) : [];
                 savedScores.push({ nickname: nicknameInput.value, score: score });
                 localStorage.setItem('snakeScores', JSON.stringify(savedScores));
@@ -238,7 +250,6 @@ draw(); // Rysowanie po każdym ruchu
 
             // Display ranking
             displayRanking();
-
 
             // Restart the game
             resetGame();
@@ -276,20 +287,16 @@ draw(); // Rysowanie po każdym ruchu
                 score = 0;
                 scoreElement.textContent = 'Score: ' + score;
 
-                // Wyczyszczenie poprzedniego interwału, jeśli istnieje
                 clearInterval(intervalId);
-
-                // Ustawienie nowego interwału
                 intervalId = setInterval(() => {
                     move();
                 }, snakeSpeed);
             } else if (gameInProgress) {
-                alert('Game is already in progress. Finish it before starting a new one.');
+                alert('Gra jest już w toku. Zakończ go zanim zaczniesz nowy.');
             } else {
-                alert('Please enter a nickname before starting the game.');
+                alert('Przed rozpoczęciem gry wprowadź pseudonim.');
             }
         }
-
       // Obsługa ruchu
       document.addEventListener('keydown', (event) => {
           if (gameInProgress) {
