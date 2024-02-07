@@ -154,26 +154,23 @@
         <span class="l"><a href="gry.html">gra</a></span>
       </span>
     </div>
-    <div id="gorac">
+    <div class="container">
+      <div class="page" id="page1">
+         <div id="ranking">Ranking:</div>
+      </div>
+      <div class="page" id="page2">
+         <div id="game-container">
       
-    </div>
-    </div>
-  <div class="container">
-    <div class="page" id="page1">
-       <div id="ranking">Ranking:</div>
-    </div>
-    <div class="page" id="page2">
-       <div id="game-container">
-    
-    <h1>Snake Game</h1>
-    <div id="form-container">
-        <label for="nickname">Wpisz swój nik:</label>
-        <input type="text" id="nickname" name="nickname">
-        <button onclick="startGame()">Start Game</button>
-    </div>
-    <div id="game-board"></div>
-    <div id="score">Wynik: 0</div>
-</div>
+      <h1>Snake Game</h1>
+      <div id="form-container">
+          <label for="nickname">Wpisz swój nik:</label>
+          <input type="text" id="nickname" name="nickname">
+          <button onclick="startGame()">Start Game</button>
+      </div>
+      <div id="game-board"></div>
+      <div id="score">Wynik: 0</div>
+  </div>
+      </div>
     </div>
     <script>
          let nicknameInput = document.getElementById('nickname');
