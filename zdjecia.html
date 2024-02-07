@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
-    <title>BITWINE</title>
-    <link rel="icon" href="ok.png" type="image/x-icon">
-    <meta charset="UTF-8">
-    <style>
-        body {
+<title>BITWINE</title>
+<link rel="icon" href="ok.png" type="image/x-icon">
+<meta charset="UTF-8">
+<style>
+body {
             background-color: rgb(184, 125, 77);
+            background-size: cover;
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
         }
 
         #strona {
-            max-width: 950px;
-            margin: 20px auto;
+            width: 950px;
+            margin: 0 auto;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            margin-top: 20px;
             background-color: rgba(255, 255, 255, 0.8);
         }
 
@@ -29,7 +30,6 @@
             line-height: 40px;
             border-radius: 5px;
             margin-bottom: 20px;
-            display: flex;
             justify-content: flex-end;
             padding: 0 20px;
         }
@@ -56,11 +56,7 @@
             border-radius: 5px;
         }
 
-        .o,
-        .i,
-        .k,
-        .n,
-        .q {
+        .o, .i, .k, .n, .q {
             font-size: 10px;
             color: #555;
         }
@@ -74,66 +70,61 @@
             text-decoration: none;
         }
 
-        b {
-            text-align: center;
-        }
-
-        .zdjecie-container {
-            float: left;
-            width: 300px;
-            margin-right: 20px;
-        }
-
-        p {
-            font-size: 20px;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .r {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-        }
-    </style>
+		b {
+			text-align:center;
+		}
+		#zdj1 {
+		float:left;
+		}
+		#zdj2 {
+		float:right;
+		}
+		#zdj3 {
+		float:right;
+		}
+		#zdj4 {
+		float:left;
+		}
+		p {
+		font-size: 30px;
+		text-align: center;
+		font-weight: bold;
+	}
+</style>
 </head>
-
 <body>
-    <div id="strona">
-        <div id="gora">
-            <span class="q">
-                <span class="i"><a href="przygody.html">MENU</a></span>
-                <span class="k"><a href="historia.html">Our-Story</a></span>
-                <span class="n"><a href="index.html">Powrót</a></span>
-                <span class="o"><a href="zdjecia.html">zdjecia</a></span>
-                <span class="y"><a href="kal.html">kalkulator</a></span>
-                <span class="l"><a href="gry.html">gra</a></span>
-            </span>
-        </div>
-        <div id="gorac">
-            <!-- Add content if needed -->
-        </div>
-        <div class="zdjecie-container">
+<div id="strona">
+		<div id="gora">
+			<span class="q">
+					<span class="i"><a href="przygody.html">MENU</a></span>
+						<span class="k"><a href="historia.html">Our-Story</a></span>
+							<span class="n"><a href="index.html">Powrót</a></span>
+                                <span class="o"><a href="zdjecia.html">zdjecia</a></span>
+									<span class="y"><a href="kal.html">kalkulator</a></span>
+									<span class="l"><a href="gry.html">gra</a></span>
+			</span>
+		</div>
+		<div id="gorac">
+		
+		</div>
+        <div id="zdj1">
+				<div id="zdj1">
             <p>Zdjęcie drzewa</p>
-            <img src="dz4.jpg" alt="zdj1" width="300px" height="350px">
-            <span class="r"><a href="dz4.jpg" download="dz4.jpg">Pobierz plik</a></span>
-        </div>
-        <div class="zdjecie-container">
+            <img src="dz4.jpg" alt="zdj1" width="300px" height="350px"><span class="r"><a href="dz4.jpg" download="dz4.jpg">Pobierz plik</a></span>
+				</div>
+				<div id="zdj2">
             <p>Zdjęcie nieba</p>
-            <img src="dz3.jpg" alt="zdj1" width="300px" height="350px">
-            <span class="r"><a href="dz3.jpg" download="dz3.jpg">Pobierz plik</a></span>
-        </div>
-        <div class="zdjecie-container">
-            <p>Zdjęcie drogi</p>
-            <img src="dz2.jpg" alt="zdj1" width="300px" height="350px">
-            <span class="r"><a href="dz2.jpg" download="dz2.jpg">Pobierz plik</a></span>
-        </div>
-        <div class="zdjecie-container">
-            <p>Wchód słońca</p>
-            <img src="dz5.jpg" alt="zdj1" width="300px" height="350px">
-            <span class="r"><a href="dz5.jpg" download="dz5.jpg">Pobierz plik</a></span>
-        </div>
-    </div>
+            <img src="dz3.jpg" alt="zdj1" width="300px" height="350px"><span class="r"><a href="dz3.jpg" download="dz3.jpg">Pobierz plik</a></span>
+				</div>
+				<div id="zdj3">
+			<p>Zdjęcie drogi</p>
+            <img src="dz2.jpg" alt="zdj1" width="300px" height="350px"><span class="r"><a href="dz2.jpg" download="dz2.jpg">Pobierz plik</a></span>
+				</div>
+				<div id="zdj4">
+			<p>Wchód słońca</p>
+			<img src="dz5.jpg" alt="zdj1" width="300px" height="350px"><span class="r"><a href="dz5.jpg" download="dz5.jpg">Pobierz plik</a></span>
+				</div>
+		</div>
+		</div>
 </body>
 </html>
