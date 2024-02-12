@@ -20,17 +20,21 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-direction: column; /* Ustawienie kierunku flexboxa na kolumnowy */
+            align-items: center; /* Wyśrodkowanie wertykalne */
         }
 
         #gora {
             height: 40px;
-            background-image:url(wod.jpg);
+            background-image: url(wod.jpg);
             color: white;
             line-height: 40px;
             border-radius: 5px;
             margin-bottom: 20px;
             justify-content: flex-end;
             padding: 0 20px;
+            width: 100%;
         }
 
         #gora a {
@@ -48,7 +52,7 @@
         #gorac {
             width: 100%;
             height: 40px;
-            background-image:url(ol.jpg);
+            background-image: url(ol.jpg);
             color: white;
             text-align: center;
             line-height: 40px;
@@ -80,16 +84,19 @@
             flex: 1;
             padding: 20px;
         }
-        img {
-            background-position: center;
+        img.l {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 300px;
+            height: 350px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         p {
             font-size: 18px;
             line-height: 1.5;
             color: #333;
-        }
-        .l {
-            background-position: center;
         }
     </style>
 </head>
@@ -111,13 +118,15 @@
         </div>
         <div id="zdj1">
             <p>Zdjęcie drzewa</p>
-            <img src="dz4.jpg" alt="zdj1" width="300px" height="350px" class="l">
+            <img src="dz4.jpg" alt="zdj1" class="l">
             <div class="text">
                 <p>Jest wieczór. Słońce powoli schodzi za horyzontem, malując niebo odcieniami ciepłych barw. Promienie zachodzącego słońca rozświetlają chmurki na niebie, tworząc malowniczy pejzaż.</p>
                 <p>Widok jest magiczny, a kolory intensywne. Ciepłe odcienie pomarańczy, różu i fioletu tworzą niepowtarzalny spektakl natury. Ptaki wracają do swoich gniazd, a pierwsze gwiazdy zaczynają migotać na niebie.</p>
                 <p>Zachód słońca to chwila, w której czas zdaje się zatrzymać. To idealny moment na refleksję i podziwianie piękna natury.</p>
             </div>
             <span class="r"><a href="dz4.jpg" download="dz4.jpg">Pobierz plik</a></span>
+        </div>
     </div>
 </body>
+
 </html>
