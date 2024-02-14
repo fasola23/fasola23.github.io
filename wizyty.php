@@ -75,15 +75,12 @@
             text-decoration: none;
         }
         #menu {
-            width:40%;
-            height: 300px;
+            width:500px;
             float:left;
             background-color: #ECA4A6;
         }
        #glowny {
-        width: 57%;
         height: 300px;
-        float:left;
         background-color: #ECA4A6;
         padding-left: 3%;
        }
@@ -129,6 +126,25 @@
             </div>
                 <div id="glowny">
                     <h2>Zapisz się na wizytę</h2>
+                    <from action="" method="post">
+                    <table>
+                        <tr>
+                        <td>Imię:</td>
+                            <td><input type="text" name="imie"></td>
+                        </tr>
+                        <tr>
+                            <td>Nazwisko:</td>
+                            <td><input type="text" name="nazw"></td>
+                        </tr>
+                        <tr>
+                            <td>Wybierz datę usługi</td>
+                            <td><input type="date" name="data"></td>
+                        </tr>
+                        <tr>
+                            <td>Wybierz usługę:</td>
+                                <td><salect name="zabieg">
+                                <option values="2"
+                        </tr>
                 </div>
             </div>
     </div>
