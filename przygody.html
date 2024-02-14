@@ -80,19 +80,30 @@
             float: left;
             margin-right: 20px;
         }
-
-        .zdj {
-            width: 300px;
-            float: right;
-            margin-top: 20px;
+        #menu {
+            width:40%;
+            height: 300px;
+            float:left;
+            background-color: #ECA4A6;
         }
-
-        .zdj img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+       #glowny {
+        width: 57%;
+        height: 300px;
+        float:left;
+        background-color: #ECA4A6;
+        padding-left: 3%;
+       }
+       #przyciski li {
+        width: 200px;
+        height: 30px;
+        background-color: #F9D5D3;
+        text-align: center;
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 20px;
+        list-style-type:none;
+        font-weight: bold;
+       }
     </style>
 </head>
 
@@ -109,27 +120,38 @@
             </span>
         </div>
         <div id="gorac">
-                <p>MENU </p>
+                <p>Piękność </p>
         </div>
         <div class="tekst">
-            <ol>
-                <h3>
-                    <li>Usługi konsultingowe IT: Pomoc w planowaniu i wdrażaniu rozwiązań technologicznych dla
-                        innych firm.</li>
-                    <li>Rozwój oprogramowania na zamówienie: Tworzenie spersonalizowanych aplikacji i oprogramowania
-                        zgodnie z wymaganiami klienta.</li>
-                    <li>Usługi zarządzania danymi: Pomoc firmom w zarządzaniu, analizie i ochronie ich danych.</li>
-                    <li>Usługi szkoleniowe: Szkolenia z zakresu technologii IT dla firm i indywidualnych klientów.</li>
-                    <li>Usługi wsparcia technicznego: Zapewnienie wsparcia technicznego dla produktów i usług IT.</li>
-                    <li>Usługi w chmurze: Pomoc firmom w migracji do chmury i zarządzaniu usługami w chmurze.</li>
-                    <li>zdjęcie mojej firmy na dole</li>
-                </h3>
-            </ol>
-        </div>
-        <div class="zdj">
-            <img src="BITWINE3.jpg" alt="zdjęcie mojej firmy">
-        </div>
-        <div style="clear: both;"></div>
+            <div id="menu">
+                <ol id="przyciski">
+                    <li><a href="index.html">Strona główna</a></li>
+                    <li><a href="wizyty.php">Wizyty</a></li>
+                </ol>
+            </div>
+                <div id="glowny">
+                    <h2>Oferta salonu</h2>
+                    <ol>
+                        <li>Pielęgnacja dłoni
+                            <ul>
+                                <li>Manicure tradycyjny 60 zł</li>
+                                <li>Manicure japoński 70 zł</li>
+                                <li>Manicure hybrydowy 80 zł</li>
+                            </ul>
+                        </li>
+                        <li>Pielęgnacja stóp
+                            <ul>
+                                <li>Pedicure tradycyjny 100 zł</li>
+                                <li>Pedicure hybrydowy 120 zł</li>
+                            </ul>
+                        </li>
+                        <li>Zabieg parafinowy na dłonie
+                            <ul>
+                                <li>Peeling,maska,parafina,krem,masaż 60 zł</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
     </div>
 </body>
 
