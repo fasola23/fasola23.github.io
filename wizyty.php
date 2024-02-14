@@ -74,12 +74,6 @@
             color: white;
             text-decoration: none;
         }
-
-        .tekst {
-            width: 60%;
-            float: left;
-            margin-right: 20px;
-        }
         #menu {
             width:40%;
             height: 300px;
@@ -105,7 +99,6 @@
         font-weight: bold;
        }
        #kontener {
-        width:90px;
         margin-left: auto;
         margin-right: auto;
        }
@@ -127,7 +120,6 @@
         <div id="gorac">
                 <p>Piękność </p>
         </div>
-        <div class="tekst">
             <div id="kontener">
             <div id="menu">
                 <ol id="przyciski">
@@ -138,7 +130,7 @@
                 <div id="glowny">
                     <h2>Zapisz się na wizytę</h2>
                 </div>
-    </div>
+            </div>
     </div>
 </body>
 </html>
