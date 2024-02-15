@@ -168,7 +168,7 @@
                             $d= $r1['Idklienta'];
                             $q2=mysqli_query($conn,"SELECT max(Idklienta) as 'ile' FROM klient");
                                 $r2=mysqli_fetch_array($q2);
-                                    if ($r1! =NULL)
+                                    if ($r1 !=NULL)
                                     {
                                         $q3=mysqli_query($conn,"INSERT INTO wizyta (Idklienta,Iduslugi,Datazabiegu) values ('$d','$zabieg','$data')");
                                             echo "<h4>Wizyta została zapisana.</h4>";
