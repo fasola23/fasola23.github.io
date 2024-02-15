@@ -126,7 +126,7 @@
             </div>
                 <div id="glowny">
                     <h2>Zapisz się na wizytę</h2>
-                    <from action="" method="post">
+                    <from action="" method="post" >
                     <table>
                         <tr>
                         <td>Imię:</td>
