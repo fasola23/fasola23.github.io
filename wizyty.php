@@ -99,6 +99,25 @@
         margin-left: auto;
         margin-right: auto;
        }
+       #table {
+        background-color:#F9D5D3;
+        margin:auto;
+        width:60%;
+        height:60%;
+        border-radius:20px;
+       }
+       #h4 {
+        color:darkred;
+        text-align:center;
+       }
+       #przycisk2 {
+        width:200px;
+        height:40px;
+        background-color:#99A89E;
+        text-align:center;
+        border-radius:20px;
+        
+       }
     </style>
 </head>
 
