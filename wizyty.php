@@ -161,7 +161,7 @@
                         </tr>
                         <tr>
                             <td>Wybierz usługę:</td>
-                                <td><salect name="zabieg">
+                                <td><select name="zabieg">
                                 <option values="2">Manicure tradycyjny</option>
                                 <option values="3">Manicure japoński</option>
                                 <option values="4">Manicure hybrydowy</option>
